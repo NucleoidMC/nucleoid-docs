@@ -1,0 +1,43 @@
+site_name: Nucleoid Docs
+
+theme:
+  name: material
+  logo: assets/images/favicon.png
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+
+# nav:
+#   - index.md
+#   - plasmid/index.md
+#   - backend/index.md
+#   - backend/http-api.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://nucleoid.xyz/discord
+    - icon: fontawesome/brands/github
+      link: https://github.com/NucleoidMC
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/NucleoidMC
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences

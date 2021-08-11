@@ -1,0 +1,2 @@
+All content of pages in the documentation is licensed CC-BY-SA (see LICENSE-content.txt)
+with the exception of code snippets and examples which are licensed under The Unlicense (see LICENSE-code.txt)
