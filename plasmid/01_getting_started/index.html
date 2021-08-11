@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Getting started - Nucleoid Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Nucleoid Docs" class="md-header__button md-logo" aria-label="Nucleoid Docs" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nucleoid Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Welcome!
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../backend/" class="md-tabs__link">
+        Backend
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Plasmid
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nucleoid Docs" class="md-nav__button md-logo" aria-label="Nucleoid Docs" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Nucleoid Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Backend
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Backend" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Backend
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/" class="md-nav__link">
+        Backend
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/http-api/" class="md-nav__link">
+        HTTP API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Plasmid
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Plasmid" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Plasmid
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Plasmid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Getting started
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-to-gradle" class="md-nav__link">
+    Adding to Gradle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-basic-game" class="md-nav__link">
+    Creating a Basic Game
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Basic Game">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-our-config-in-code" class="md-nav__link">
+    Creating our config in code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-config" class="md-nav__link">
+    Creating a config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-the-code-to-start-our-game" class="md-nav__link">
+    Writing the code to start our game
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-game" class="md-nav__link">
+    Testing the game!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_maps/" class="md-nav__link">
+        Creating a Map
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_statistics/" class="md-nav__link">
+        Implementing statistics
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="getting-started">Getting started</h1>
+<p>If you would like to get up and running quickly with a basic game setup, clone the <a href="https://github.com/NucleoidMC/plasmid-starter">plasmid-starter</a> repository, run <code>init.py</code>, and then delete <code>.git</code>, <code>README.md</code>, and <code>init.py</code>. Alternatively, if you are looking for examples of existing implemented games, take a look through the <a href="https://github.com/NucleoidMC">Nucleoid Organisation</a> repositories.</p>
+<h3 id="adding-to-gradle">Adding to Gradle</h3>
+<p>Assuming you <a href="https://fabricmc.net/wiki/tutorial:setup">already have a Fabric workspace set up</a>, the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. <code>PLASMID_VERSION</code> should be replaced with the latest version from <a href="https://maven.nucleoid.xyz/xyz/nucleoid/plasmid">Maven</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
+  <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://maven.nucleoid.xyz/&#39;</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+  <span class="c1">// ...</span>
+  <span class="n">modImplementation</span> <span class="s1">&#39;xyz.nucleoid:plasmid:PLASMID_VERSION&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="creating-a-basic-game">Creating a Basic Game</h3>
+<p>A <code>GameType</code> is the entry-point to creating a game with Plasmid: they provide a unique identifier for your game, as well as all the information needed for it to be able to call your code when the game starts.</p>
+<p>Plasmid is designed to encourage data-driven games, and works with the concept of a <em>game config</em>. A game config is simply just a JSON file in a datapack that references your <code>GameType</code> and passes along any extra data that may be useful for configuring your game. This is especially useful because it allows the creation of different variations of the same game type, such as by using a different map or tweaking some game mechanics.</p>
+<p>To register a <code>GameType</code>, you will need to call <code>GameType.register()</code> in your <code>ModInitializer</code> class. A call to register a <code>GameType</code> may look something like:
+<div class="highlight"><pre><span></span><code><span class="n">GameType</span><span class="p">.</span><span class="na">register</span><span class="p">(</span>
+        <span class="k">new</span> <span class="n">Identifier</span><span class="p">(</span><span class="s">&quot;plasmid_example&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">),</span>
+        <span class="n">ExampleGame</span><span class="p">::</span><span class="n">open</span><span class="p">,</span>
+        <span class="n">ExampleGameConfig</span><span class="p">.</span><span class="na">CODEC</span>
+<span class="p">);</span>
+</code></pre></div></p>
+<p>Let's break down what is going on here:<br />
+- <code>new Identifier("plasmid_example", "example")</code>
+   - declares the unique identifier that the game config JSONs will use to reference your game type
+- <code>ExampleGame::open</code>
+   - references a function that will be used to start your game when a player requests it
+- <code>ExampleGameConfig.CODEC</code>
+   - a <code>Codec</code> that will be used to load configuration from the game config JSON</p>
+<p>This naturally will not compile yet: neither <code>ExampleGame</code> nor <code>ExampleGameConfig</code> exist!</p>
+<h4 id="creating-our-config-in-code">Creating our config in code</h4>
+<p>Let's create our <code>ExampleGameConfig</code> class, which will hold a <code>String</code> field that will be used as a message to send to the player when they join.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleGameConfig</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">greeting</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ExampleGameConfig</span><span class="p">(</span><span class="n">String</span> <span class="n">greeting</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">greeting</span> <span class="o">=</span> <span class="n">greeting</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>That's simple enough! But we're missing the <code>CODEC</code> field that we referenced earlier. What is that about?</p>
+<p>A <code>Codec</code> is a very helpful tool implemented by Mojang's <a href="https://github.com/Mojang/DataFixerUpper">DataFixerUpper</a> library that allows for convenient loading of a JSON file. A more detailed wonderful explanation of Codecs by Drullkus can be found <a href="https://gist.github.com/Drullkus/1bca3f2d7f048b1fe03be97c28f87910">here</a>, but for simple purposes, all you need to know is the pattern for putting them together.</p>
+<p>Essentially, it goes like this:
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Codec</span><span class="o">&lt;</span><span class="n">ExampleGameConfig</span><span class="o">&gt;</span> <span class="n">CODEC</span> <span class="o">=</span> <span class="n">RecordCodecBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">instance</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">instance</span><span class="p">.</span><span class="na">group</span><span class="p">(</span>
+            <span class="n">Codec</span><span class="p">.</span><span class="na">STRING</span><span class="p">.</span><span class="na">fieldOf</span><span class="p">(</span><span class="s">&quot;greeting&quot;</span><span class="p">).</span><span class="na">forGetter</span><span class="p">(</span><span class="n">config</span> <span class="o">-&gt;</span> <span class="n">config</span><span class="p">.</span><span class="na">greeting</span><span class="p">)</span>
+    <span class="p">).</span><span class="na">apply</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">ExampleGameConfig</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>Most things here you can ignore, but there are a few important things to note:
+ - <code>Codec&lt;ExampleGameConfig&gt;</code>
+    - The type of class that is being deserialized into is referenced as a generic on the <code>Codec</code>
+ - <code>Codec.STRING.fieldOf(...).forGetter(...)</code>
+    - This declares a field with a given name and type that will be read from the JSON. 
+    - You will notice that <code>Codec.STRING</code> is itself a <code>Codec&lt;String&gt;</code>: a field can be created from any codec, where that codec will be used to deserialize the value of that field. This is very useful in allowing combinations of codecs to create complex structures!
+    - The parameter to <code>.fieldOf()</code> specifies the name of the field that this value will be read from
+    - <code>.forGetter()</code> specifies a lambda that is used to retrieve the value of a field. This is useful since codecs allow for both serialization and deserialization, and the getter is required to turn the object back into data.
+ - <code>ExampleGameConfig::new</code>
+    - This tells the codec how to create the object once it has deserialized all the fields. This requires a method reference to the constructor for the given object with all the fields <strong>in order as they were specified!</strong>.
+    - For example, here we take in one <code>String</code> field, and the constructor we reference also takes a single <code>String</code> parameter.</p>
+<p>The JSON that corresponds to this codec would look like:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;greeting&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World!&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="creating-a-config">Creating a config</h4>
+<p>Now that we know what data our config should hold, we can create a game config for plasmid to load.</p>
+<p>All game configs need to be located in a datapack (or within mod resources) at <code>data/&lt;namespace&gt;/games/&lt;id&gt;.json</code>. For the purpose of a mod, the <code>namespace</code> should just be your mod id, and the <code>id</code> can be any unique name that will later be used to reference your game config from inside Minecraft.</p>
+<p>Plasmid requires only 2 JSON fields from the config, while the rest is loaded as per the config codec that you set up. These two fields are <code>type</code> and <code>name</code>, where the <code>type</code> refers to the <code>GameType</code> you created earlier in <code>namespace:path</code> format, and <code>name</code> defines a human-readable name to describe this game config. This does not need to be unique!</p>
+<p>For our purposes, our game config at <code>data/plasmid_example/games/hello_world_example.json</code> will look like:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;plasmid_example:example&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World Example&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;greeting&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello, World!&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="writing-the-code-to-start-our-game">Writing the code to start our game</h4>
+<p>Now that we have set up a config and have told Plasmid how to read from it, we can finally write the code to actually start our game.</p>
+<p>For the purpose of this example, let's create an <code>ExampleGame</code> class. We will use this class to hold the state of the game as well as our <code>ExampleGameConfig</code> that got loaded. For now though, we just need to create this <code>open</code> function that we referenced to the <code>GameType</code>.</p>
+<p>This should look like:
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleGame</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">GameOpenProcedure</span> <span class="nf">open</span><span class="p">(</span><span class="n">GameOpenContext</span><span class="o">&lt;</span><span class="n">ExampleGameConfig</span><span class="o">&gt;</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// get our config that got loaded by Plasmid</span>
+        <span class="n">ExampleGameConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="na">getConfig</span><span class="p">();</span>
+
+        <span class="c1">// create a very simple map with a stone block at (0; 64; 0)</span>
+        <span class="n">MapTemplate</span> <span class="n">template</span> <span class="o">=</span> <span class="n">MapTemplate</span><span class="p">.</span><span class="na">createEmpty</span><span class="p">();</span>
+        <span class="n">template</span><span class="p">.</span><span class="na">setBlockState</span><span class="p">(</span><span class="k">new</span> <span class="n">BlockPos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Blocks</span><span class="p">.</span><span class="na">STONE</span><span class="p">.</span><span class="na">getDefaultState</span><span class="p">());</span>
+
+        <span class="c1">// create a chunk generator that will generate from this template that we just created</span>
+        <span class="n">TemplateChunkGenerator</span> <span class="n">generator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TemplateChunkGenerator</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="na">getServer</span><span class="p">(),</span> <span class="n">template</span><span class="p">);</span>
+
+        <span class="c1">// set up how the world that this minigame will take place in should be constructed</span>
+        <span class="n">BubbleWorldConfig</span> <span class="n">worldConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BubbleWorldConfig</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">setGenerator</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">setDefaultGameMode</span><span class="p">(</span><span class="n">GameMode</span><span class="p">.</span><span class="na">ADVENTURE</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">setSpawnAt</span><span class="p">(</span><span class="k">new</span> <span class="n">Vec3d</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+
+        <span class="k">return</span> <span class="n">context</span><span class="p">.</span><span class="na">createOpenProcedure</span><span class="p">(</span><span class="n">worldConfig</span><span class="p">,</span> <span class="n">logic</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="c1">// to be implemented</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>There is a lot to digest here, but it's not too complex if we break it down. Our <code>open</code> will be called whenever a player starts this game. The function takes a <code>GameOpenContext</code>, which holds the data from our JSON config, and returns a <code>GameOpenProcedure</code>, which instructs Plasmid how it should continue to set up the game. It is worth nothing that this function is run asynchronously on the thread pool, so it is safe to run whatever slow code here before the game starts.</p>
+<p>The <code>GameOpenProcedure</code> is created from the <code>GameContext</code> object, and takes in a <code>BubbleWorldConfig</code> as well as a lambda that accepts a <code>GameLogic</code> parameter. A bubble world is a concept within Plasmid that represents a fully isolated and temporary world. A bubble world is created at runtime when the game starts, and deleted when it finishes. When a player joins the game, their inventory will be cleared, and when they leave, it will be restored back to them.</p>
+<p>The most important thing to be configured within the bubble world is the chunk generator: this tells the game how the world should generate. It would be possible to, for example, pass the overworld chunk generator here, but for our purpose, we're creating an empty world with a single stone block through the convenience <code>TemplateChunkGenerator</code>. The <code>TemplateChunkGenerator</code> takes a <code>MapTemplate</code>, which is just a very basic world that contains some blocks, and loads from that into the world itself.</p>
+<p>Finally, we need to address what to do in the lambda with the <code>GameLogic</code> parameter. The code inside this lambda will run on the main thread, and is used to run the actual game setup code. This mainly involves registering event listeners, or setting global rules.</p>
+<p>For example:
+<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="n">context</span><span class="p">.</span><span class="na">createOpenProcedure</span><span class="p">(</span><span class="n">worldConfig</span><span class="p">,</span> <span class="n">logic</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="n">logic</span><span class="p">.</span><span class="na">setRule</span><span class="p">(</span><span class="n">GameRule</span><span class="p">.</span><span class="na">FALL_DAMAGE</span><span class="p">,</span> <span class="n">RuleResult</span><span class="p">.</span><span class="na">DENY</span><span class="p">);</span>
+    <span class="n">logic</span><span class="p">.</span><span class="na">on</span><span class="p">(</span><span class="n">PlayerAddListener</span><span class="p">.</span><span class="na">EVENT</span><span class="p">,</span> <span class="n">player</span> <span class="o">-&gt;</span> <span class="p">{</span>
+        <span class="c1">// a player has been added!</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>This code will disable fall damage for all players, as well as registering a listener that will be called whenever a player is added to this game.</p>
+<p>As of right now, though, the listener won't do anything when it is called. We want it to send a greeting to the player when they join.
+<div class="highlight"><pre><span></span><code><span class="n">GameSpace</span> <span class="n">gameSpace</span> <span class="o">=</span> <span class="n">logic</span><span class="p">.</span><span class="na">getSpace</span><span class="p">();</span>
+
+<span class="n">logic</span><span class="p">.</span><span class="na">setRule</span><span class="p">(</span><span class="n">GameRule</span><span class="p">.</span><span class="na">FALL_DAMAGE</span><span class="p">,</span> <span class="n">RuleResult</span><span class="p">.</span><span class="na">DENY</span><span class="p">);</span>
+<span class="n">logic</span><span class="p">.</span><span class="na">on</span><span class="p">(</span><span class="n">PlayerAddListener</span><span class="p">.</span><span class="na">EVENT</span><span class="p">,</span> <span class="n">player</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="n">Text</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LiteralText</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="na">greeting</span><span class="p">);</span>
+    <span class="n">gameSpace</span><span class="p">.</span><span class="na">getPlayers</span><span class="p">().</span><span class="na">sendMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>We've added logic to send a message within the listener, but what is a <code>GameSpace</code>? A <code>GameSpace</code>, as the name implies, represents the space within which a game is occurring. For all our purposes, that space is just a dimension. The <code>GameSpace</code> is useful for us in that it keeps track of all the players within it, as well as the <code>ServerWorld</code> that the game is taking place within. Here, we access the <code>GameSpace</code> through <code>GameLogic.getSpace()</code>.</p>
+<p>Working with players additionally goes through a new Plasmid API: a <code>PlayerSet</code>. A <code>PlayerSet</code> represents just a list of players, and it can be iterated over / queried, but it additionally provides utilities for performing bulk operations over many players. For example, sending a message! Here, we use <code>PlayerSet.sendMessage()</code> to send our greeting to every player within the game. </p>
+<p>Tada! 🎉 We have a working game! But before we test it, let's do some minor reorganization. With all these handlers and lambdas, our code inside <code>createOpenProcedure</code> is going to get quite lengthy very quickly! It would be nice if we can put all event listeners on our <code>ExampleGame</code> object instead.</p>
+<p>Turns out, that works just fine, and we are left with our final <code>ExampleGame</code> setup:
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">ExampleGame</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">GameSpace</span> <span class="n">gameSpace</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ExampleGameConfig</span> <span class="n">config</span><span class="p">;</span>
+
+    <span class="kd">private</span> <span class="nf">ExampleGame</span><span class="p">(</span><span class="n">GameSpace</span> <span class="n">gameSpace</span><span class="p">,</span> <span class="n">ExampleGameConfig</span> <span class="n">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">gameSpace</span> <span class="o">=</span> <span class="n">gameSpace</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">config</span> <span class="o">=</span> <span class="n">config</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">GameOpenProcedure</span> <span class="nf">open</span><span class="p">(</span><span class="n">GameOpenContext</span><span class="o">&lt;</span><span class="n">ExampleGameConfig</span><span class="o">&gt;</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ExampleGameConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="na">getConfig</span><span class="p">();</span>
+
+        <span class="n">MapTemplate</span> <span class="n">template</span> <span class="o">=</span> <span class="n">MapTemplate</span><span class="p">.</span><span class="na">createEmpty</span><span class="p">();</span>
+        <span class="n">template</span><span class="p">.</span><span class="na">setBlockState</span><span class="p">(</span><span class="k">new</span> <span class="n">BlockPos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Blocks</span><span class="p">.</span><span class="na">STONE</span><span class="p">.</span><span class="na">getDefaultState</span><span class="p">());</span>
+
+        <span class="n">TemplateChunkGenerator</span> <span class="n">generator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TemplateChunkGenerator</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="na">getServer</span><span class="p">(),</span> <span class="n">template</span><span class="p">);</span>
+
+        <span class="n">BubbleWorldConfig</span> <span class="n">worldConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BubbleWorldConfig</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">setGenerator</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">setDefaultGameMode</span><span class="p">(</span><span class="n">GameMode</span><span class="p">.</span><span class="na">ADVENTURE</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">setSpawnAt</span><span class="p">(</span><span class="k">new</span> <span class="n">Vec3d</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+
+        <span class="k">return</span> <span class="n">context</span><span class="p">.</span><span class="na">createOpenProcedure</span><span class="p">(</span><span class="n">worldConfig</span><span class="p">,</span> <span class="n">logic</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">GameSpace</span> <span class="n">gameSpace</span> <span class="o">=</span> <span class="n">logic</span><span class="p">.</span><span class="na">getSpace</span><span class="p">();</span>
+            <span class="n">ExampleGame</span> <span class="n">game</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ExampleGame</span><span class="p">(</span><span class="n">gameSpace</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+
+            <span class="n">logic</span><span class="p">.</span><span class="na">setRule</span><span class="p">(</span><span class="n">GameRule</span><span class="p">.</span><span class="na">FALL_DAMAGE</span><span class="p">,</span> <span class="n">RuleResult</span><span class="p">.</span><span class="na">DENY</span><span class="p">);</span>
+            <span class="n">logic</span><span class="p">.</span><span class="na">on</span><span class="p">(</span><span class="n">PlayerAddListener</span><span class="p">.</span><span class="na">EVENT</span><span class="p">,</span> <span class="n">game</span><span class="p">::</span><span class="n">addPlayer</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">addPlayer</span><span class="p">(</span><span class="n">ServerPlayerEntity</span> <span class="n">player</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Text</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LiteralText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">config</span><span class="p">.</span><span class="na">greeting</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">gameSpace</span><span class="p">.</span><span class="na">getPlayers</span><span class="p">().</span><span class="na">sendMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="testing-the-game">Testing the game!</h4>
+<p>Once everything compiles, we can finally launch up Minecraft. If our <code>GameType</code> is all correctly set up and game config JSON in place, once opening a world, we should be able to start our game by running: <code>/game open &lt;id&gt;</code>. (Remember, this is referencing the name of the JSON file and not the GameType!)</p>
+<p>So in our case: <code>/game open plasmid_example:hello_world_example</code>
+...and we should be joined into our void world with a stone block with a lovely greeting!</p>
+<p>Now, any other player can join us too by running <code>/game join</code> or clicking the link that shows up in chat.</p>
+<p>That's it! 🎉 </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Plasmid" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Plasmid
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../02_maps/" class="md-footer__link md-footer__link--next" aria-label="Next: Creating a Map" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Creating a Map
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://nucleoid.xyz/discord" target="_blank" rel="noopener" title="nucleoid.xyz" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541zM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/NucleoidMC" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/NucleoidMC" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+    
+  </body>
+</html>
