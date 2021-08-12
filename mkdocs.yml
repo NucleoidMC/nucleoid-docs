@@ -1,4 +1,6 @@
 site_name: Nucleoid Docs
+repo_url: https://github.com/NucleoidMC/nucleoid-docs
+repo_name: NucleoidMC/nucleoid-docs
 
 theme:
   name: material
@@ -21,6 +23,8 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
+  icon:
+    repo: fontawesome/brands/github
 
 # nav:
 #   - index.md
