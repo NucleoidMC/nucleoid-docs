@@ -26,12 +26,6 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
-# nav:
-#   - index.md
-#   - plasmid/index.md
-#   - backend/index.md
-#   - backend/http-api.md
-
 extra:
   social:
     - icon: fontawesome/brands/discord
@@ -40,6 +34,8 @@ extra:
       link: https://github.com/NucleoidMC
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/NucleoidMC
+
+copyright: Content on this site is licensed CC-BY-SA; excluding code snippets, which are licensed under The Unlicense.
 
 markdown_extensions:
   - admonition
