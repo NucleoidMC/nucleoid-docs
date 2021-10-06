@@ -1,4 +1,4 @@
-# Plasmid
+# About
 
 [![GitHub contributors](https://img.shields.io/github/contributors/NucleoidMC/plasmid?logo=github&style=for-the-badge)](https://github.com/NucleoidMC/plasmid)
 [![GitHub last commit](https://img.shields.io/github/last-commit/NucleoidMC/plasmid?logo=github&style=for-the-badge)](https://github.com/NucleoidMC/plasmid)

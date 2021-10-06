@@ -26,6 +26,17 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+nav:
+  - index.md
+  - Plasmid:
+    - plasmid/index.md
+    - plasmid/getting-started.md
+    - plasmid/maps.md
+    - plasmid/statistics.md
+  - Backend:
+    - backend/index.md
+    - backend/http-api.md
+
 extra:
   social:
     - icon: fontawesome/brands/discord

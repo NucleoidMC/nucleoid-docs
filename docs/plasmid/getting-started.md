@@ -1,9 +1,10 @@
 # Getting Started
 
 ### Adding to Gradle
-Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. `PLASMID_VERSION` should be replaced with the latest version from [Maven](https://maven.nucleoid.xyz/xyz/nucleoid/plasmid).
+Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. `PLASMID_VERSION` should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
 
-This tutorial is currently updated for **Plasmid 0.5.x**.
+!!! info
+	This tutorial is currently updated for **Plasmid 0.5.x**.
 
 ```gradle
 repositories {
