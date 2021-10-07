@@ -562,14 +562,14 @@
 <p class="admonition-title">Info</p>
 <p>This tutorial is currently updated for <strong>Plasmid 0.5.x</strong>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>repositories {
-  maven { url = &#39;https://maven.nucleoid.xyz/&#39; }
-}
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
+  <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://maven.nucleoid.xyz/&#39;</span> <span class="o">}</span>
+<span class="o">}</span>
 
-dependencies {
-  // ...
-  modImplementation &#39;xyz.nucleoid:plasmid:PLASMID_VERSION&#39;
-}
+<span class="n">dependencies</span> <span class="o">{</span>
+  <span class="c1">// ...</span>
+  <span class="n">modImplementation</span> <span class="s1">&#39;xyz.nucleoid:plasmid:PLASMID_VERSION&#39;</span>
+<span class="o">}</span>
 </code></pre></div>
 <h3 id="creating-a-game-type">Creating a game type</h3>
 <p>A "game type" (<code>GameType</code>) is the entry-point to creating a game with Plasmid: they provide a unique identifier for your game, as well as all the information needed for it to be able to call your code when the game starts.</p>
@@ -582,12 +582,12 @@ dependencies {
 <span class="p">);</span>
 </code></pre></div></p>
 <p>Let's break down what is going on here:
-- <code>new Identifier("plasmid_example", "example")</code>
-    - declares the unique identifier for this <em>game type</em> that will be referenced by game config JSONs
-- <code>ExampleGameConfig.CODEC</code>
-    - a <code>Codec</code> that will be used to load the game configuration from a JSON file (more on this later!)
-- <code>ExampleGame::open</code>
-    - a method reference to a function that will be used to start your game when a player requests it</p>
+ - <code>new Identifier("plasmid_example", "example")</code>
+     - declares the unique identifier for this <em>game type</em> that will be referenced by game config JSONs
+ - <code>ExampleGameConfig.CODEC</code>
+     - a <code>Codec</code> that will be used to load the game configuration from a JSON file (more on this later!)
+ - <code>ExampleGame::open</code>
+     - a method reference to a function that will be used to start your game when a player requests it</p>
 <p>This naturally will not compile yet: neither <code>ExampleGame</code> nor <code>ExampleGameConfig</code> exist! Let's get to that.</p>
 <h3 id="creating-our-config-in-code">Creating our config in code</h3>
 <p>First we will create our <code>ExampleGameConfig</code> class, which will hold a <code>String</code> field that will be used as a message to send to the player when they join. Java's new <a href="https://docs.oracle.com/en/java/javase/16/language/records.html">Records</a> are perfect for configs, but not required!</p>
@@ -611,18 +611,18 @@ dependencies {
 <span class="p">}</span>
 </code></pre></div></p>
 <p>Most things here you can ignore: you only really need to worry about what's in the <code>instance.group(...)</code> call, and the generic on the Codec. To look at each relevant part more specifically:
-- <code>Codec&lt;ExampleGameConfig&gt;</code>
-    - The type of class that is being deserialized into is passed as a generic parameter to the <code>Codec</code>.
-- <code>Codec.STRING.fieldOf(...).forGetter(...)</code>
-    - This adds a field with a given name and type that will be read from the JSON.
-    - You will notice that <code>Codec.STRING</code> is itself a <code>Codec&lt;String&gt;</code>! Every field you declare will require a Codec to describe how that field should be handled. In this case, we're indicating that the greeting field should be loaded using <code>Codec.STRING</code>. In the same way, we could reference any other codec we create to add it as a field! This is very useful in allowing combinations of codecs to create complex structures!
-        - Codec tip: most serializable Minecraft types will hold a static <code>CODEC</code> field for use (e.g. <code>BlockPos.CODEC</code> or <code>Identifier.CODEC</code>). If not, we bundle a <code>MoreCodecs</code> type which provides some common ones that are not included in the vanilla codebase (e.g. <code>MoreCodecs.TEXT</code>).
-    - The parameter to <code>.fieldOf()</code> specifies the name of the field (in JSON) that this value will be read from.
-    - <code>.forGetter()</code> specifies how the value of a field should be read back from our config object. This is useful since codecs allow for both serialization and deserialization, and the getter is required to turn the object back into data. We can use a method reference here since we're using a record.
-- <code>ExampleGameConfig::new</code>
-    - This tells the codec how to create the object once all the fields have been deserialized. This requires a method reference to the constructor for the given object with all the fields <strong>in order as they were specified!</strong>.
-    - For example, if we passed <code>Codec.STRING.fieldOf("foo")</code> and then <code>Codec.INT.fieldOf("bar)</code>, the constructor would take a <code>(String, int)</code>.
-    - But here we take in one <code>String</code> field, and the constructor we reference also takes a single <code>String</code> parameter.</p>
+ - <code>Codec&lt;ExampleGameConfig&gt;</code>
+     - The type of class that is being deserialized into is passed as a generic parameter to the <code>Codec</code>.
+ - <code>Codec.STRING.fieldOf(...).forGetter(...)</code>
+     - This adds a field with a given name and type that will be read from the JSON.
+     - You will notice that <code>Codec.STRING</code> is itself a <code>Codec&lt;String&gt;</code>! Every field you declare will require a Codec to describe how that field should be handled. In this case, we're indicating that the greeting field should be loaded using <code>Codec.STRING</code>. In the same way, we could reference any other codec we create to add it as a field! This is very useful in allowing combinations of codecs to create complex structures!
+         - Codec tip: most serializable Minecraft types will hold a static <code>CODEC</code> field for use (e.g. <code>BlockPos.CODEC</code> or <code>Identifier.CODEC</code>). If not, we bundle a <code>MoreCodecs</code> type which provides some common ones that are not included in the vanilla codebase (e.g. <code>MoreCodecs.TEXT</code>).
+     - The parameter to <code>.fieldOf()</code> specifies the name of the field (in JSON) that this value will be read from.
+     - <code>.forGetter()</code> specifies how the value of a field should be read back from our config object. This is useful since codecs allow for both serialization and deserialization, and the getter is required to turn the object back into data. We can use a method reference here since we're using a record.
+ - <code>ExampleGameConfig::new</code>
+     - This tells the codec how to create the object once all the fields have been deserialized. This requires a method reference to the constructor for the given object with all the fields <strong>in order as they were specified!</strong>.
+     - For example, if we passed <code>Codec.STRING.fieldOf("foo")</code> and then <code>Codec.INT.fieldOf("bar)</code>, the constructor would take a <code>(String, int)</code>.
+     - But here we take in one <code>String</code> field, and the constructor we reference also takes a single <code>String</code> parameter.</p>
 <p>The end result of all this Codec work is that when we create a game config, all this data will be automatically parsed from our JSON file and passed to our game code!</p>
 <h4 id="creating-a-config">Creating a config</h4>
 <p>Now that we know what data our config should hold, we can create an actual game config JSON for Plasmid to load.</p>
@@ -708,11 +708,11 @@ This may look like:
 <span class="p">});</span>
 </code></pre></div></p>
 <p>That's a lot! Let's break it down:
-- We register a listener for <code>GamePlayerEvents.OFFER</code> which takes an <code>offer</code> parameter.
-- We get the player instance who is trying to join from the offer.
-- We call <code>offer.accept(...)</code> to accept the player into the game.
-    - We pass the accept function a <em>world</em> and a <em>position</em> for the player to be teleported to. The world was passed to us above by Plasmid!
-- We then call <code>.and(...)</code> on the result of <code>.accept(...)</code> in order to attach some additional spawn logic to be run when the player joins. In this case, that is to set the player's game mode to adventure mode as they join.</p>
+ - We register a listener for <code>GamePlayerEvents.OFFER</code> which takes an <code>offer</code> parameter.
+ - We get the player instance who is trying to join from the offer.
+ - We call <code>offer.accept(...)</code> to accept the player into the game.
+     - We pass the accept function a <em>world</em> and a <em>position</em> for the player to be teleported to. The world was passed to us above by Plasmid!
+ - We then call <code>.and(...)</code> on the result of <code>.accept(...)</code> in order to attach some additional spawn logic to be run when the player joins. In this case, that is to set the player's game mode to adventure mode as they join.</p>
 <p>Now that we have that set up, we can return to our player add listener: as of right now, we're not doing anything when it is called. We want it to send a greeting to the player when they join. Let's implement that:
 <div class="highlight"><pre><span></span><code><span class="n">GameSpace</span> <span class="n">gameSpace</span> <span class="o">=</span> <span class="n">activity</span><span class="p">.</span><span class="na">getGameSpace</span><span class="p">();</span>
 <span class="n">activity</span><span class="p">.</span><span class="na">listen</span><span class="p">(</span><span class="n">GamePlayerEvents</span><span class="p">.</span><span class="na">ADD</span><span class="p">,</span> <span class="n">player</span> <span class="o">-&gt;</span> <span class="p">{</span>
