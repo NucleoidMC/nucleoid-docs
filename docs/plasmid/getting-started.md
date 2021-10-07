@@ -32,10 +32,13 @@ GameType.register(
 ```
 
 Let's break down what is going on here:
+
  - `new Identifier("plasmid_example", "example")`
      - declares the unique identifier for this _game type_ that will be referenced by game config JSONs
+
  - `ExampleGameConfig.CODEC`
      - a `Codec` that will be used to load the game configuration from a JSON file (more on this later!)
+
  - `ExampleGame::open`
      - a method reference to a function that will be used to start your game when a player requests it
 
@@ -72,17 +75,25 @@ This will correspond to a JSON file that looks something like:
 ```
 
 Most things here you can ignore: you only really need to worry about what's in the `instance.group(...)` call, and the generic on the Codec. To look at each relevant part more specifically:
+
  - `Codec<ExampleGameConfig>`
      - The type of class that is being deserialized into is passed as a generic parameter to the `Codec`.
+
  - `Codec.STRING.fieldOf(...).forGetter(...)`
      - This adds a field with a given name and type that will be read from the JSON.
+
      - You will notice that `Codec.STRING` is itself a `Codec<String>`! Every field you declare will require a Codec to describe how that field should be handled. In this case, we're indicating that the greeting field should be loaded using `Codec.STRING`. In the same way, we could reference any other codec we create to add it as a field! This is very useful in allowing combinations of codecs to create complex structures!
          - Codec tip: most serializable Minecraft types will hold a static `CODEC` field for use (e.g. `BlockPos.CODEC` or `Identifier.CODEC`). If not, we bundle a `MoreCodecs` type which provides some common ones that are not included in the vanilla codebase (e.g. `MoreCodecs.TEXT`).
+
      - The parameter to `.fieldOf()` specifies the name of the field (in JSON) that this value will be read from.
-     - `.forGetter()` specifies how the value of a field should be read back from our config object. This is useful since codecs allow for both serialization and deserialization, and the getter is required to turn the object back into data. We can use a method reference here since we're using a record.
+ 
+    - `.forGetter()` specifies how the value of a field should be read back from our config object. This is useful since codecs allow for both serialization and deserialization, and the getter is required to turn the object back into data. We can use a method reference here since we're using a record.
+
  - `ExampleGameConfig::new`
      - This tells the codec how to create the object once all the fields have been deserialized. This requires a method reference to the constructor for the given object with all the fields **in order as they were specified!**.
+
      - For example, if we passed `Codec.STRING.fieldOf("foo")` and then `Codec.INT.fieldOf("bar)`, the constructor would take a `(String, int)`.
+
      - But here we take in one `String` field, and the constructor we reference also takes a single `String` parameter.
 
 The end result of all this Codec work is that when we create a game config, all this data will be automatically parsed from our JSON file and passed to our game code!
@@ -199,10 +210,14 @@ activity.listen(GamePlayerEvents.OFFER, offer -> {
 ```
 
 That's a lot! Let's break it down:
+
  - We register a listener for `GamePlayerEvents.OFFER` which takes an `offer` parameter.
+
  - We get the player instance who is trying to join from the offer.
+
  - We call `offer.accept(...)` to accept the player into the game.
      - We pass the accept function a *world* and a *position* for the player to be teleported to. The world was passed to us above by Plasmid!
+
  - We then call `.and(...)` on the result of `.accept(...)` in order to attach some additional spawn logic to be run when the player joins. In this case, that is to set the player's game mode to adventure mode as they join.
 
 Now that we have that set up, we can return to our player add listener: as of right now, we're not doing anything when it is called. We want it to send a greeting to the player when they join. Let's implement that:
