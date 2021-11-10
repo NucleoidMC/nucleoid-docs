@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -18,7 +18,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -455,6 +455,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -467,6 +469,33 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-information" class="md-nav__link">
+    General information
+  </a>
+  
+    <nav class="md-nav" aria-label="General information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    Data types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    Limits
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#status" class="md-nav__link">
@@ -495,6 +524,33 @@
   
     <nav class="md-nav" aria-label="Statistics">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-games" class="md-nav__link">
+    Get recent games
+  </a>
+  
+    <nav class="md-nav" aria-label="Get recent games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recent-game-object" class="md-nav__link">
+    Recent game object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-games-player" class="md-nav__link">
+    Get recent games (player)
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#get-all-player-stats" class="md-nav__link">
@@ -557,6 +613,12 @@
                 <h1 id="http-api">HTTP API</h1>
 <p>Nucleoid's backend service provides a few API endpoints for querying information about the server and players.</p>
 <p>The official backend API is available on <a href="https://api.nucleoid.xyz/">https://api.nucleoid.xyz/</a></p>
+<h2 id="general-information">General information</h2>
+<h3 id="data-types">Data types</h3>
+<p>All dates/times returned by the API are in <a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a> format unless specified otherwise.</p>
+<h3 id="limits">Limits</h3>
+<p>By default, the backend has a maximum query size of 50, however this can and may be changed in future. This applies to all routes that take a <code>limit</code> query parameter.</p>
+<p>There is currently also no rate-limiting on the API, however this may change in future if it causes issues.</p>
 <h2 id="status">Status</h2>
 <h3 id="server-status">Server status</h3>
 <div class="admonition example">
@@ -615,6 +677,77 @@ Currently the following servers are available to query:</p>
 </tbody>
 </table>
 <h2 id="statistics">Statistics</h2>
+<h3 id="get-recent-games">Get recent games</h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code>GET https://api.nucleoid.xyz/games/recent?limit=10
+
+[
+    {
+        &quot;id&quot;:&quot;f0087cb4-dee2-4b99-8158-d20cd72b343d&quot;,
+        &quot;namespace&quot;: &quot;bedwars&quot;,
+        &quot;players&quot;: [
+            &quot;5ad3ab57-b556-4635-9ba9-9a9a0568965a&quot;
+        ],
+        &quot;server&quot;: &quot;play&quot;,
+        &quot;date_played&quot;: &quot;2021-10-30T16:24:47Z&quot;
+    }
+]
+</code></pre></div>
+</div>
+<p>Queries a list of recently played games on the server. The limit argument is required and specifies the maximum number of games returned.</p>
+<h4 id="recent-game-object">Recent game object</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>The ID of the game, can be used to query with the <a href="#get-stats-for-game">Get stats for game</a> endpoint</td>
+</tr>
+<tr>
+<td><code>namespace</code></td>
+<td>Usually the ID of the game that was played</td>
+</tr>
+<tr>
+<td><code>players</code></td>
+<td>A list of the player IDs of the players in the game</td>
+</tr>
+<tr>
+<td><code>server</code></td>
+<td>ID of the server the game was played on (see <a href="#server-status">Server status</a>)</td>
+</tr>
+<tr>
+<td><code>date_played</code></td>
+<td>Timestamp of when the game was played</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-recent-games-player">Get recent games (player)</h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code>GET https://api.nucleoid.xyz/games/recent?limit=10&amp;player=f0087cb4-dee2-4b99-8158-d20cd72b343d
+
+[
+    {
+        &quot;id&quot;:&quot;f0087cb4-dee2-4b99-8158-d20cd72b343d&quot;,
+        &quot;namespace&quot;: &quot;bedwars&quot;,
+        &quot;players&quot;: [
+            &quot;5ad3ab57-b556-4635-9ba9-9a9a0568965a&quot;
+        ],
+        &quot;server&quot;: &quot;play&quot;,
+        &quot;date_played&quot;: &quot;2021-10-30T16:24:47Z&quot;
+    }
+]
+</code></pre></div>
+</div>
+<p>Queries a list of recently played games by a particular player on the server.</p>
+<p>The limit argument is required and specifies the maximum number of games returned.</p>
+<p>The returned object is the same format as <a href="#get-recent-games">Get recent games</a>, and is documented at <a href="#recent-game-object">Recent game object</a></p>
 <h3 id="get-all-player-stats">Get all player stats</h3>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -687,6 +820,10 @@ It will return a response in the same format as <a href="#get-all-player-stats">
 </code></pre></div>
 </div>
 <p>Allows for querying the statistics after a particular game has been played.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>00000000-0000-0000-0000-000000000000</code> UUID represents global statistics from the game, such as the number of teams.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Like the other statistics endpoints, this data is quite unstructured, and is best described with the following:
@@ -786,10 +923,10 @@ The <code>uuid::Uuid</code> type can be substituted for <code>String</code> if y
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>
