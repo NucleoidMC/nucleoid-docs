@@ -4,6 +4,18 @@ Nucleoid's backend service provides a few API endpoints for querying information
 
 The official backend API is available on [https://api.nucleoid.xyz/](https://api.nucleoid.xyz/)
 
+## General information
+
+### Data types
+
+All dates/times returned by the API are in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format unless specified otherwise.
+
+### Limits
+
+By default, the backend has a maximum query size of 50, however this can and may be changed in future. This applies to all routes that take a `limit` query parameter.
+
+There is currently also no rate-limiting on the API, however this may change in future if it causes issues.
+
 ## Status
 
 ### Server status
@@ -44,6 +56,62 @@ Currently the following servers are available to query:
 | `players` | A list of all players on the server |
 
 ## Statistics
+
+### Get recent games
+
+!!! example
+    ```
+    GET https://api.nucleoid.xyz/games/recent?limit=10
+
+    [
+        {
+            "id":"f0087cb4-dee2-4b99-8158-d20cd72b343d",
+            "namespace": "bedwars",
+            "players": [
+                "5ad3ab57-b556-4635-9ba9-9a9a0568965a"
+            ],
+            "server": "play",
+            "date_played": "2021-10-30T16:24:47Z"
+        }
+    ]
+    ```
+
+Queries a list of recently played games on the server. The limit argument is required and specifies the maximum number of games returned.
+
+#### Recent game object
+
+| Field | Description |
+| ----- | ----------- |
+| `id` | The ID of the game, can be used to query with the [Get stats for game](#get-stats-for-game) endpoint |
+| `namespace` | Usually the ID of the game that was played |
+| `players` | A list of the player IDs of the players in the game |
+| `server` | ID of the server the game was played on (see [Server status](#server-status)) |
+| `date_played` | Timestamp of when the game was played |
+
+### Get recent games (player)
+
+!!! example
+    ```
+    GET https://api.nucleoid.xyz/games/recent?limit=10&player=f0087cb4-dee2-4b99-8158-d20cd72b343d
+
+    [
+        {
+            "id":"f0087cb4-dee2-4b99-8158-d20cd72b343d",
+            "namespace": "bedwars",
+            "players": [
+                "5ad3ab57-b556-4635-9ba9-9a9a0568965a"
+            ],
+            "server": "play",
+            "date_played": "2021-10-30T16:24:47Z"
+        }
+    ]
+    ```
+
+Queries a list of recently played games by a particular player on the server.
+
+The limit argument is required and specifies the maximum number of games returned.
+
+The returned object is the same format as [Get recent games](#get-recent-games), and is documented at [Recent game object](#recent-game-object)
 
 ### Get all player stats
 !!! example
@@ -119,6 +187,9 @@ It will return a response in the same format as [Get all player stats](#get-all-
     ```
 
 Allows for querying the statistics after a particular game has been played.
+
+!!! note
+    The `00000000-0000-0000-0000-000000000000` UUID represents global statistics from the game, such as the number of teams.
 
 !!! note
     Like the other statistics endpoints, this data is quite unstructured, and is best described with the following:
