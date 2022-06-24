@@ -4,13 +4,13 @@
 
 1. Fork [Nucleoid Extras repository](https://github.com/NucleoidMC/nucleoid-extras)
 2. Create a branch `namehere-taters` where `namehere` refers to the tater kind
-3. Navigate to [en_us.json](https://github.com/NucleoidMC/nucleoid-extras/blob/1.17/src/main/resources/data/nucleoid_extras/lang/en_us.json)
+3. Navigate to [en_us.json](https://github.com/NucleoidMC/nucleoid-extras/blob/1.18/src/main/resources/data/nucleoid_extras/lang/en_us.json)
 4. Copy an existing tater line
 5. Paste it, and make sure the name reflects the one you want to add
-6. Go to [NEItems.java](https://github.com/NucleoidMC/nucleoid-extras/blob/1.17/src/main/java/xyz/nucleoid/extras/lobby/NEItems.java)
+6. Go to [NEItems.java](https://github.com/NucleoidMC/nucleoid-extras/blob/1.18/src/main/java/xyz/nucleoid/extras/lobby/NEItems.java)
 7. Copy existing tater lines - `public static final` and the `register` one
 8. Change values according to your tater's name
-9. Go to [NEBlocks.java](https://github.com/NucleoidMC/nucleoid-extras/blob/1.17/src/main/java/xyz/nucleoid/extras/lobby/NEBlocks.java)
+9. Go to [NEBlocks.java](https://github.com/NucleoidMC/nucleoid-extras/blob/1.18/src/main/java/xyz/nucleoid/extras/lobby/NEBlocks.java)
 10. Copy existing tater lines
 11. Change values according to your tater's name, change the effect if needed [(color picker here)](https://rgbcolorcode.com)
 9. Upload the head skin to [MineSkin](https://mineskin.org) [(templates here)](https://minecraft.fandom.com/wiki/Skin#Official_skin_templates)
