@@ -1,6 +1,6 @@
 # Adding taters to Nucleoid Extras
 
-### Add tater
+## Add tater
 
 1. Fork [Nucleoid Extras repository](https://github.com/NucleoidMC/nucleoid-extras)
 2. Create a branch `namehere-taters` where `namehere` refers to the tater kind
@@ -19,7 +19,7 @@
 11. Commit and push
 12. Create a pull request
 
-### Edit tater image
+## Edit tater image
 
 1. Copy the `ewog`
 2. [Paste it here](https://www.base64decode.org)
@@ -28,4 +28,5 @@
 5. Edit it
 6. See adding instructions for adding the updated one back
 
-Instructions based on https://discord.com/channels/733462796582387753/744090136945360936/913463834994413618
+Instructions based on [this Discord message](https://discord.com/channels/733462796582387753/744090136945360936/913463834994413618)
+```.
