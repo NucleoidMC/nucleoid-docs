@@ -2,7 +2,7 @@
 
 ### Add tater
 
-1. Fork this repo
+1. Fork [Nucleoid Extras repository](https://github.com/NucleoidMC/nucleoid-extras)
 2. Create a branch `namehere-taters` where `namehere` refers to the tater kind
 3. Navigate to [en_us.json](https://github.com/NucleoidMC/nucleoid-extras/blob/1.17/src/main/resources/data/nucleoid_extras/lang/en_us.json)
 4. Copy an existing tater line
