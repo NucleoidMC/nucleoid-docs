@@ -1,7 +1,7 @@
 # Getting Started
 
 ### Adding to Gradle
-Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. `PLASMID_VERSION` should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
+Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. The Plasmid version should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
 
 !!! info
 	This tutorial is currently updated for **Plasmid 0.5.x**.
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
   // ...
-  modImplementation 'xyz.nucleoid:plasmid:PLASMID_VERSION'
+  modImplementation 'xyz.nucleoid:plasmid:0.5+1.19-SNAPSHOT'
 }
 ```
 
@@ -224,7 +224,7 @@ Now that we have that set up, we can return to our player add listener: as of ri
 ```java
 GameSpace gameSpace = activity.getGameSpace();
 activity.listen(GamePlayerEvents.ADD, player -> {
-    LiteralText message = new LiteralText(config.greeting);
+    Text message = Text.literal(config.greeting);
     gameSpace.getPlayers().sendMessage(message);
 });
 ```
@@ -282,7 +282,7 @@ public final class ExampleGame {
     }
 
     private void onPlayerAdd(ServerPlayerEntity player) {
-        LiteralText message = new LiteralText(this.config.greeting);
+        Text message = Text.literal(this.config.greeting);
         this.gameSpace.getPlayers().sendMessage(message);
     }
 }
