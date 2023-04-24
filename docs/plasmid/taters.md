@@ -13,11 +13,11 @@
 9. Go to [NEBlocks.java](https://github.com/NucleoidMC/nucleoid-extras/blob/1.19.4/src/main/java/xyz/nucleoid/extras/lobby/NEBlocks.java#L64)
 10. Copy existing tater lines
 11. Change values according to your tater's name, change the effect if needed [(color picker here)](https://rgbcolorcode.com)
-9. Upload the head skin to [MineSkin](https://mineskin.org) [(templates here)](https://minecraft.fandom.com/wiki/Skin#Official_skin_templates)
-10. Copy the hash that is at the end of "Texture URL"
-11. Paste it to your tater's row, replacing the existing hash
-11. Commit and push
-12. Create a pull request
+12. Upload the head skin to [MineSkin](https://mineskin.org) [(templates here)](https://minecraft.fandom.com/wiki/Skin#Official_skin_templates)
+13. Copy the hash that is at the end of "Texture URL"
+14. Paste it to your tater's row, replacing the existing hash
+15. Commit and push
+16. Create a pull request
 
 ## Edit tater image
 
