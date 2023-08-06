@@ -6,6 +6,5 @@
 Build Rush is a build memorizing minigame for Minecraft!  
 The goal is to memorize a structure and then rebuild it as fast and as correct as possible.
 
-!!! note
-    Current Build Rush documentation is made for the version v3.x.x.
-    This means everything that is documented here is guaranteed to work on v3.x.x, but may not work on other versions.
+!!! info
+    This tutorial is currently updated for **Build Rush 3.0.x**.
