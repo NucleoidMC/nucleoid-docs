@@ -37,8 +37,8 @@ nav:
     - backend/index.md
     - backend/http-api.md
   - Build Rush:
-    - build_rush/index.md
-    - build_rush/maps.md
+    - build-rush/index.md
+    - build-rush/maps.md
 
 extra:
   social:
