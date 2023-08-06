@@ -30,7 +30,7 @@ public class MyGameActive {
 }
 ```
 
-You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics().bundle()`, so double check it matches.
+You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.<bundle>.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics().bundle()`, so double check it matches.
 
 ## Getting some keys
 Time to get implementi- Oh, we still need to do something else first :/
