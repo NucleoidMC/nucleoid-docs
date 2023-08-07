@@ -52,7 +52,7 @@ The game type is `build_rush:standard`.
 For the builds list, you can use the `#build_rush:generic` tag that includes most of the available builds.
 
 !!! note
-    The builds field can contain any builds, even if they are not compatible with the map. Only the compatible ones will get filtered out.
+    The builds field can contain any builds, even if they are not compatible with the map. Only compatible builds from the entry list will get used.
 
 !!! note
     If you are contributing to the Build Rush original repository, please make sure to follow this checklist before submitting your pull request:
