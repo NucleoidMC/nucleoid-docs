@@ -85,7 +85,7 @@ The final step is to scatter these increments around your minigame and collect s
 ## Finished!
 And then that's it, your minigame now has statistics support 🎉!
 
-If you need a hand implementing or don't understand something, feel free to [join the Discord](https://nucleoid.xyz/discord/) and speak to me (@tom_the_geek) in `#minigame-dev`.
+If you need a hand implementing or don't understand something, feel free to [join the Discord](https://nucleoid.xyz/discord/) and ask in `#minigame-dev`.
 
 ## Extra: debugging
 If you want to double-check that your statistics are being counted correctly, you can add `-Dplasmid.debug_statistics=true` to your JVM arguments and plasmid will print out a JSON formatted version of all `GameStatisticBundle`s at the end of any game.
