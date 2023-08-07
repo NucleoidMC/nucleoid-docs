@@ -1,36 +1,36 @@
 # Implementing statistics
 
 !!! warning
-    The final statistics API is only available on 0.5 for 1.17, as some things have changed since the initial implementation in plasmid 0.4
+    The final statistics API is only available on Plasmid 0.5 for 1.17 and higher, as some things have changed since the initial implementation in Plasmid 0.4
 
 Plasmid provides an API for allowing minigames to record statistics for their players, and can be implemented to allow leaderboards to be generated for games (soon&trade;).
 
 ## Before you begin
-This guide assumes that you have a minigame already implemented and want to add support for tracking statistics. If you simply would like to create a minigame, see the [Getting Started guide](/plasmid/01_getting_started).
+This guide assumes that you have a minigame already implemented and want to add support for tracking statistics. If you simply would like to create a minigame, see the [Getting Started guide](/plasmid/getting-started/).
 
-It also expects that you are on the latest version of plasmid 0.5 with statistics support.
+It also expects that you are on the latest version of Plasmid 0.5 with statistics support.
 
 ## Bundles of fun
 (Well it might not seem fun, but its the first step for implementing statistics into your game.)
 
-The first step for implementing statistics is getting your hands on a `GameStatisticsBundle`, which is a class provided by plasmid that holds per-player and global statistics for your current game. You can do this quite easily within the constructor of your `GameActive` class like this:
+The first step for implementing statistics is getting your hands on a `GameStatisticBundle`, which is a class provided by plasmid that holds per-player and global statistics for your current game. You can do this quite easily within the constructor of your `GameActive` class like this:
 ```java
 public class MyGameActive {
     /* other fields */
-    public final GameStatisticsBundle statistics;
+    public final GameStatisticBundle statistics;
 
     private MyGameActive(GameSpace gameSpace, /* other parameters */) {
         /* other initialization logic */
 
         // The value passed to getStatistics should usually be the ID of your minigame/mod
-        this.statistics = gameSpace.getStatistics(MyGame.ID);
+        this.statistics = gameSpace.getStatistics().bundle(MyGame.ID);
     }
 
     /* other game logic */
 }
 ```
 
-You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.bundle.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics()`, so double check it matches.
+You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.bundle.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics().bundle()`, so double check it matches.
 
 ## Getting some keys
 Time to get implementi- Oh, we still need to do something else first :/
@@ -38,7 +38,7 @@ Time to get implementi- Oh, we still need to do something else first :/
 Once you have a `GameStatisticsBundle`, the next step is to actually increment some statistics, and this is where the specifics can become different between games, as every game is somewhat unique.
 
 !!! note "What are StatisticKeys?"
-    `StatisticKey`s are a type-safe identifier for a specific statistic, and internally store both an `Identifier` and a `StorageType`.
+    `StatisticKey`s are a type-safe identifier for a specific statistic, and internally store both an `Identifier`.
 
 ### Standard keys
 Plasmid provides several built in `StatisticKey`s in a conveniently named `StatisticKeys` class. Here are some examples:
@@ -54,7 +54,7 @@ You can create your own `StatisticKey`s and store them in `public static final` 
 public class MyGameStatistics {
     public static final StatisticKey<Integer> SOME_COOL_STAT =
         // or StatisticKey.doubleKey or StatisticKey.floatKey
-        StatisticKey.intKey(new Identifier(MyGame.ID, "some_cool_stat"), StatisticKey.StorageType.TOTAL);
+        StatisticKey.intKey(new Identifier(MyGame.ID, "some_cool_stat"));
 }
 ```
 
@@ -85,7 +85,7 @@ The final step is to scatter these increments around your minigame and collect s
 ## Finished!
 And then that's it, your minigame now has statistics support 🎉!
 
-If you need a hand implementing or don't understand something, feel free to [join the Discord](https://nucleoid.xyz/discord/) and speak to me (@Tom_The_Geek#8559) in `#minigame-dev`.
+If you need a hand implementing or don't understand something, feel free to [join the Discord](https://nucleoid.xyz/discord/) and ask in `#minigame-dev`.
 
 ## Extra: debugging
-If you want to double check that your statistics are being counted correctly, you can add `-Dplasmid.debug_statistics=true` to your JVM arguments and plasmid will print out a JSON formatted version of all `GameStatisticBundle`s at the end of any game.
+If you want to double-check that your statistics are being counted correctly, you can add `-Dplasmid.debug_statistics=true` to your JVM arguments and plasmid will print out a JSON formatted version of all `GameStatisticBundle`s at the end of any game.
