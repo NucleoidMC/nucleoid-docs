@@ -36,7 +36,11 @@ Here are the configuration fields added by Build Rush, on top of the ones added 
   "map": {
     "template": "build_rush:my_map",
     "nametag_offset": 5,
-    "nametag_size": 2.0
+    "nametag_size": 2.0,
+    "author": {
+      "name": "jeb_",
+      "uuid": "853c80ef-3c37-49fd-aa49-938b674adae6"
+    }
   },
   "builds": "#build_rush:generic"
   // ...
@@ -45,16 +49,19 @@ Here are the configuration fields added by Build Rush, on top of the ones added 
 
 The game type is `build_rush:standard`.
 
-| Field                | Description                                                   | Required | Defaults to |
-|----------------------|---------------------------------------------------------------|----------|-------------|
-| `players`            | The configuration of number of players.                       | Yes      |             |
-| `map`                | The configuration of the map.                                 | Yes      |             |
-| `map.template`       | The map template to use.                                      | Yes      |             |
-| `map.nametag_offset` | The offset of the name tag above the player's plot.           | No       | 10          |
-| `map.nametag_size`   | The size of the name tag above the player's plot.             | No       | 5.0         |
-| `builds`             | The list of builds to use. Can be a list of builds, or a tag. | Yes      |             |
+| Field                | Description                                                   | Required | Defaults to         |
+|----------------------|---------------------------------------------------------------|----------|---------------------|
+| `players`            | The configuration of number of players.                       | Yes      |                     |
+| `map`                | The configuration of the map.                                 | Yes      |                     |
+| `map.template`       | The map template to use.                                      | Yes      |                     |
+| `map.nametag_offset` | The offset of the name tag above the player's plot.           | No       | 10                  |
+| `map.nametag_size`   | The size of the name tag above the player's plot.             | No       | 5.0                 |
+| `map.author`         | The author of the map.                                        | No       |                     |
+| `map.author.name`    | The name of the author.                                       | Yes      |                     |
+| `map.author.uuid`    | The UUID of the author.                                       | No       |                     |
+| `builds`             | The list of builds to use. Can be a list of builds, or a tag. | Yes      | #build_rush:generic |
 
-For the builds list, you can use the `#build_rush:generic` tag that includes most of the available builds.
+The `#build_rush:generic` tag includes most of the available builds.
 
 !!! note
     The builds field can contain any builds, even if they are not compatible with the map. Only compatible builds from the entry list will get used.
@@ -82,4 +89,4 @@ If you are contributing to the Build Rush repository, please make sure to follow
   }
   ```
 - Your game configuration has an icon.
-- The build list is large enough, to counter the feeling of repetitiveness. Use the `#build_rush:generic` if you don't have enough builds.
+- The build list is large enough, to counter the feeling of repetitiveness. If you don't have enough builds, leave the builds empty for the game to use the `#build_rush:generic` tag.
