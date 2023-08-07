@@ -39,6 +39,7 @@ nav:
   - Build Rush:
     - build-rush/index.md
     - build-rush/maps.md
+    - build-rush/builds.md
 
 extra:
   social:
