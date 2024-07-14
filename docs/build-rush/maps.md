@@ -2,7 +2,7 @@
 
 ## Creating the map template
 
-Please follow the [Plasmid tutorial](/plasmid/maps) on how to create a map template.
+Please follow the [Plasmid tutorial](../plasmid/maps.md) on how to create a map template.
 
 A Build Rush map template needs the following regions:
 - `center_plot`: the center of the map, where the players will be teleported to at first, and where the chosen build may appear at points. (only 1)
@@ -19,12 +19,12 @@ Map templates are stored in the `map_templates` folder of the datapack, so save 
 
 ## Creating the game configuration
 
-Please follow the [Plasmid tutorial](/plasmid/getting-started/#creating-a-config) on how to create a game configuration.
+Please follow the [Plasmid tutorial](../plasmid/getting-started.md#creating-a-config) on how to create a game configuration.
 
 You now need to add a game configuration that will use your map.
 Game configurations are stored in the `games` folder of the datapack, so create your `.json` file there.
 
-Here are the configuration fields added by Build Rush, on top of the ones added by Plasmid: 
+Here are the configuration fields added by Build Rush, on top of the ones added by Plasmid:
 ```json5
 {
   // ...
@@ -76,7 +76,7 @@ If you are contributing to the Build Rush repository, please make sure to follow
   ```json5
   {
     // ...
-    "name": {                                        
+    "name": {
       "translate": "game.build_rush.small.with_map",   // change "small" with "medium" or "large" depending on the size of your plots
         "with": [
         {
