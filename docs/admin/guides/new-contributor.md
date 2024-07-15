@@ -22,17 +22,16 @@ Grant them the contributor role, along with whichever specific roles fit (eg. co
 
 ```mcfunction
 /role assign <username> contributor
-# Code contributor
-/role assign <username> dev
-/role assign <username> builder
+/role assign <username> dev # if they are a code contributor
+/role assign <username> builder # if they are a build contributor
 ```
 
 ### Website cards
 
-1. Create a new file in the [`NucleoidMC/nucleoid-contributors`](https://github.com/NucleoidMC/nucleoid-contributors), under the folder `data/people/` named `theirusername.toml` (use all lower case, and no spaces or special characters)..
+1. Create a new file in the [`NucleoidMC/nucleoid-contributors`](https://github.com/NucleoidMC/nucleoid-contributors), under the folder `data/people/` named `theirusername.toml` (use all lower case, and no spaces or special characters).
 2. Fill out the file using the following template:
 ```toml
-name = "their perfered display name (if unsure, ask)"
+name = "their preferred display name (if unsure, ask)"
 groups = [
     "code",
     "building",
