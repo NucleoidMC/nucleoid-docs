@@ -2,7 +2,7 @@
 
 ## nucleoid.xyz
 
-The website is served as a static site by apache2 from `/var/www/nucleoid.xyz`. It's build automatically by GitHub Actions, so you just need to `sudo git pull` from that folder to update the site once it has built.
+The website is served as a static site by apache2 from `/var/www/nucleoid.xyz`. It's built automatically by GitHub Actions, so you just need to `sudo git pull` from that folder to update the site once it has built.
 
 ## maven.nucleoid.xyz and build.nucleoid.xyz
 
