@@ -51,7 +51,6 @@ nav:
         - admin/infra/services/backend.md
         - admin/infra/services/minecraft.md
         - admin/infra/services/modmail.md
-        - admin/infra/services/velocity.md
         - admin/infra/services/website.md
         - admin/infra/services/misc.md
 

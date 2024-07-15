@@ -44,5 +44,5 @@ groups = [
 [socials]
 minecraft = "their minecraft uuid (for consistency, remove the -)"
 ```
-3. Commit the file back to the repo, and run `sudo git pull` in `/var/www/nucleoid-contributors` (unfortunately we don't have auto-deployment yet, poke Ash if you get annoyed by this).
+3. Commit the file back to the repo, and run `sudo git pull` in `/var/www/nucleoid-contributors` (unfortunately we don't have auto-deployment yet, poke Ash to set it up if you get annoyed by this).
 4. Invite them to update the file (or if they're not familiar with GitHub, provide extras for you to put in) - see [Ash's card](https://github.com/NucleoidMC/nucleoid-contributors/blob/main/data/people/ashhhleyyy.toml) as a template. Members of the GitHub org should automatically get write permissions to the repo, so can update their own.

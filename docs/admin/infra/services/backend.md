@@ -4,4 +4,4 @@ The [backend](https://github.com/NucleoidMC/nucleoid-backend) is run from `/home
 
 ## Updating
 
-Download the latest binary from [GitHub Actions](https://github.com/NucleoidMC/nucleoid-backend/actions) (I use the `gh` cli for this), and put move it to `/home/minecraft/services/backend/nucleoid-backend`. Then connect to the backend `screen` session, ctrl-c and [re-run the backend](../../../guides/reboot#start-up-standalone-services).
+Download the latest binary from [GitHub Actions](https://github.com/NucleoidMC/nucleoid-backend/actions) (I use the `gh` cli for this), and put move it to `/home/minecraft/services/backend/nucleoid-backend`. Then connect to the backend `screen` session, ctrl-c and [re-run the backend](../../guides/reboot.md#start-up-standalone-services).
