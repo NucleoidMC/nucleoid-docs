@@ -40,6 +40,19 @@ nav:
     - build-rush/index.md
     - build-rush/maps.md
     - build-rush/builds.md
+  - Administration:
+    - admin/index.md
+    - Guides:
+      - admin/guides/new-contributor.md
+      - admin/guides/reboot.md
+    - Infra:
+      - admin/infra/index.md
+      - Services:
+        - admin/infra/services/backend.md
+        - admin/infra/services/minecraft.md
+        - admin/infra/services/modmail.md
+        - admin/infra/services/website.md
+        - admin/infra/services/misc.md
 
 extra:
   social:
