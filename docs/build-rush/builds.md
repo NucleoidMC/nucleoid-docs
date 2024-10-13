@@ -20,7 +20,7 @@ You can also add a custom floor for your build, allowing the structure to be `n`
 Players won't have to build this floor, as it will replace the floor of all plots when building. Please make sure that all blocks of the floor have a solid top surface.
 
 !!! tip
-    Do not worry about falling blocks like sand for you floor, as barrier blocks will be placed under the plot floors if the map does not have blocks there.
+    Do not worry about falling blocks like sand for your floor, as barrier blocks will be placed under the plot floors if the map does not have blocks there.
 
 !!! example
     If you want to create a build of size 7, you can create a structure of dimensions 7x8x7, with the floor being at the bottom of the structure.
@@ -59,20 +59,20 @@ Here are the configuration fields of a build:
 | `author.uuid` | The UUID of the author.         | No       |             |
 
 !!! tip
-    If a game tries to load any build that is not valid in any way, it will get ignored and a warning will be sent in the console.
+    If a game tries to load any build that is not valid in any way, it will be ignored and a warning will be sent in the console.
 
-A standalone build will not get used in any gamemode, that's because it is the game config that defines the list of builds that it's going to use.
+A standalone build will not be used in any gamemode, that's because it is the game config that defines the list of builds that it's going to use.
 However, you can add your build to the `build_rush:generic` tag, which is used by the generic game modes.
 
 ## Notes on contributions
 
 If you are contributing to the Build Rush repository, please make sure to follow this checklist before submitting your pull request:
 - Your build is replicable in normal gameplay, on any maps. (no floating blocks)
-- Your build features as less redstone mechanics as possible.
+- Your build features as least redstone mechanics as possible.
 - If the name of your build is already used, add an underscore and a number at the end of the name. (`build`, `build_2`, `build_3`, ...)
 - Your structure file and your build configuration have the same name.
 - The structure is saved under the `structures/builds` folder inside the `build_rush` datapack.
-- If the build is not made for specific gamemode, add it to the `build_rush:generic` build tag.
+- If the build is not made for a specific gamemode, add it to the `build_rush:generic` build tag.
 - The build name is translatable. Use existing translations if possible, if not add a translation key that follows the `build.<name>` pattern.
 
 !!! warning
