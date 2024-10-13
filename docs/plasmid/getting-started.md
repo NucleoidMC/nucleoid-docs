@@ -45,7 +45,7 @@ Let's break down what is going on here:
 This naturally will not compile yet: neither `ExampleGame` nor `ExampleGameConfig` exist! Let's get to that.
 
 ### Creating our config in code
-First we will create our `ExampleGameConfig` class, which will hold a `String` field that will be used as a message to send to the player when they join. Java's new [Records](https://docs.oracle.com/en/java/javase/16/language/records.html) are perfect for configs, but not required!
+First, we will create our `ExampleGameConfig` class, which will hold a `String` field that will be used as a message to send to the player when they join. Java's new [Records](https://docs.oracle.com/en/java/javase/16/language/records.html) are perfect for configs, but not required!
 
 ```java
 public record ExampleGameConfig(String greeting) {
@@ -56,7 +56,7 @@ That's simple enough! But we're missing the `CODEC` field that we referenced ear
 
 A `Codec` is a very helpful tool implemented by Mojang's [DataFixerUpper](https://github.com/Mojang/DataFixerUpper) library that essentially allows for convenient serialization and deserialization of a Java object to a JSON file. A more detailed explanation of Codecs by Drullkus can be found [here](https://gist.github.com/Drullkus/1bca3f2d7f048b1fe03be97c28f87910), but for simple purposes, all you need to know is the pattern for putting them together.
 
-Essentially, a Codec describes *how an object is serialized and deserialized*. Simply, they can be created from a list of fields and how those fields should be serialized. It goes like this:
+Essentially, a Codec describes *how an object is serialized and deserialized*. They can be simply created from a list of fields and how those fields should be serialized. It goes like this:
 ```java
 public record ExampleGameConfig(String greeting) {
     public static final Codec<ExampleGameConfig> CODEC = RecordCodecBuilder.create(instance -> {

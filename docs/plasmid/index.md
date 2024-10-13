@@ -7,7 +7,7 @@
 Plasmid is a library and mod that forms the core of Nucleoid, providing a base to build minigames on top of.
 
 !!! quote "From the plasmid README"
-    Plasmid intends to do all the boring work relating to minigame implementation, to rather allow focus effort on just the game itself.
+    Plasmid intends to do all the boring work related to minigame implementation, to rather allow focused effort on just the game itself.
 
 !!! warning
     Current plasmid documentation is not up-to-date with the latest releases, including plasmid 0.5 for Minecraft 1.17.

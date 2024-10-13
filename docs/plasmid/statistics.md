@@ -35,7 +35,7 @@ You also need to provide a translation for the name of your bundle, with the tra
 ## Getting some keys
 Time to get implementi- Oh, we still need to do something else first :/
 
-Once you have a `GameStatisticsBundle`, the next step is to actually increment some statistics, and this is where the specifics can become different between games, as every game is somewhat unique.
+Once you have a `GameStatisticsBundle`, the next step is to increment some statistics, and this is where the specifics can become different between games, as every game is somewhat unique.
 
 !!! note "What are StatisticKeys?"
     `StatisticKey`s are a type-safe identifier for a specific statistic, and internally store both an `Identifier`.
@@ -64,7 +64,7 @@ If you implement custom keys, you need to ensure you provide translations for th
     If you think other minigames could use a custom `StatisticKey` you implement, mention it in `#tools-and-libraries` [on Discord](https://nucleoid.xyz/discord) and it might get included in plasmid's `StatisticKeys` class.
 
 ## Incrementing statistics
-Now for the actually interesting part.
+Now for the interesting part.
 
 !!! info "Global and per-player statistics"
     Per-player statistics are fairly self-explanatory; they're things like `KILLS` or `QUICKEST_TIME` that apply to a single player.
