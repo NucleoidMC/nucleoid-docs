@@ -64,7 +64,7 @@ The game type is `build_rush:standard`.
 The `#build_rush:generic` tag includes most of the available builds.
 
 !!! note
-    The builds field can contain any builds, even if they are not compatible with the map. Only compatible builds from the entry list will get used.
+    The builds field can contain any builds, even if they are not compatible with the map. Only compatible builds from the entry list will be used.
 
 ## Notes on contributions
 
