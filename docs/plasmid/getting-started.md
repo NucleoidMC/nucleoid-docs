@@ -4,7 +4,7 @@
 Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. The Plasmid version should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
 
 !!! info
-	This tutorial is currently updated for **Plasmid 0.5.x**.
+	This tutorial is currently updated for **Plasmid 0.6.x** and **Minecraft 1.21.4**.
 
 ```groovy
 repositories {
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
   // ...
-  modImplementation 'xyz.nucleoid:plasmid:0.5+1.19-SNAPSHOT'
+  modImplementation 'xyz.nucleoid:plasmid:0.6.2+1.21.4'
 }
 ```
 
@@ -25,7 +25,7 @@ Plasmid is designed to encourage data-driven games, and works with the concept o
 To register a `GameType`, you will need to call `GameType.register()` in your `ModInitializer` class. A call to register a `GameType` may look something like:
 ```java
 GameType.register(
-        new Identifier("plasmid_example", "example"),
+        Identifier.of("plasmid_example", "example"),
         ExampleGameConfig.CODEC,
         ExampleGame::open
 );
@@ -33,11 +33,11 @@ GameType.register(
 
 Let's break down what is going on here:
 
- - `new Identifier("plasmid_example", "example")`
+ - `Identifier.of("plasmid_example", "example")`
      - declares the unique identifier for this _game type_ that will be referenced by game config JSONs
 
  - `ExampleGameConfig.CODEC`
-     - a `Codec` that will be used to load the game configuration from a JSON file (more on this later!)
+     - a codec that will be used to load the game configuration from a JSON file (more on this later!)
 
  - `ExampleGame::open`
      - a method reference to a function that will be used to start your game when a player requests it
@@ -54,12 +54,12 @@ public record ExampleGameConfig(String greeting) {
 
 That's simple enough! But we're missing the `CODEC` field that we referenced earlier. What is that about?
 
-A `Codec` is a very helpful tool implemented by Mojang's [DataFixerUpper](https://github.com/Mojang/DataFixerUpper) library that essentially allows for convenient serialization and deserialization of a Java object to a JSON file. A more detailed explanation of Codecs by Drullkus can be found [here](https://gist.github.com/Drullkus/1bca3f2d7f048b1fe03be97c28f87910), but for simple purposes, all you need to know is the pattern for putting them together.
+A codec is a very helpful tool implemented by Mojang's [DataFixerUpper](https://github.com/Mojang/DataFixerUpper) library that essentially allows for convenient serialization and deserialization of a Java object to a JSON file. A more detailed explanation of Codecs by Drullkus can be found [here](https://gist.github.com/Drullkus/1bca3f2d7f048b1fe03be97c28f87910), but for simple purposes, all you need to know is the pattern for putting them together.
 
 Essentially, a Codec describes *how an object is serialized and deserialized*. Simply, they can be created from a list of fields and how those fields should be serialized. It goes like this:
 ```java
 public record ExampleGameConfig(String greeting) {
-    public static final Codec<ExampleGameConfig> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<ExampleGameConfig> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(
                 Codec.STRING.fieldOf("greeting").forGetter(ExampleGameConfig::greeting)
         ).apply(instance, ExampleGameConfig::new);
@@ -76,8 +76,8 @@ This will correspond to a JSON file that looks something like:
 
 Most things here you can ignore: you only really need to worry about what's in the `instance.group(...)` call, and the generic on the Codec. To look at each relevant part more specifically:
 
- - `Codec<ExampleGameConfig>`
-     - The type of class that is being deserialized into is passed as a generic parameter to the `Codec`.
+ - `MapCodec<ExampleGameConfig>`
+     - The type of class that is being deserialized into is passed as a generic parameter to the `MapCodec`.
 
  - `Codec.STRING.fieldOf(...).forGetter(...)`
      - This adds a field with a given name and type that will be read from the JSON.
@@ -101,11 +101,11 @@ The end result of all this Codec work is that when we create a game config, all 
 #### Creating a config
 Now that we know what data our config should hold, we can create an actual game config JSON for Plasmid to load.
 
-All game configs need to be located in your mod resources (or [datapack](https://github.com/NucleoidMC/game-configs)!) at `data/<namespace>/games/<id>.json`. For the purpose of a mod, the `namespace` should just be your mod id, and the `id` can be any unique name that will later be used to reference your game config from inside Minecraft.
+All game configs need to be located in your mod resources (or [datapack](https://github.com/NucleoidMC/game-configs)!) at `data/<namespace>/plasmid/game/<id>.json`. For the purpose of a mod, the `namespace` should just be your mod id, and the `id` can be any unique name that will later be used to reference your game config from inside Minecraft.
 
 Plasmid requires only 1 JSON field from the config, while the rest is loaded as per the config codec that you set up. There are however also some additional optional fields which may be useful to define. The only required field is the `type`, which refers to the `GameType` you created earlier in `namespace:path` format (e.g. in our case, `plasmid_example:example`).
 
-For our purposes, our game config at `data/plasmid_example/games/hello_world_example.json` will look like:
+For our purposes, our game config at `data/plasmid_example/plasmid/game/hello_world_example.json` will look like:
 ```json
 {
   "type": "plasmid_example:example",
@@ -118,17 +118,20 @@ This may look like:
 ```json5
 {
   "type": "plasmid_example:example",
+  "greeting": "Hello, World!",
+
   "name": "Hello World Example!",
   "description": ["Look at my cool game!", "It greets you when you join."],
   "icon": "minecraft:apple"
+
   // ...
 }
 ```
 
-`name` and `description` can also reference translation keys due to being [JSON Text Components](https://minecraft.wiki/w/Raw_JSON_text_format). For example, this may instead be: `"name": {"translation": "game.plasmid_example.hello_world_example"}`.
+`name` and `description` can also reference translation keys due to being [JSON Text Components](https://minecraft.wiki/w/Raw_JSON_text_format). For example, this may instead be: `"name": {"translate": "game.plasmid_example.hello_world_example"}`.
 
 #### A note on translations
-Translations are a bit non-standard in Plasmid due to it being entirely server-side! Usually translations are stored with the game client, and the server simply sends over _translation keys_ which are then turned into relevant readable text on the client-side. Here, however, we need to instead handle translations by changing the packets that get sent to players such that they are correctly translated _before_ the client even receives it. This is a lot of work! Luckily, this is handled by [Server Translations](https://github.com/arthurbambou/Server-Translations), and we do not need to worry about it!
+Translations are a bit non-standard in Plasmid due to it being entirely server-side! Usually translations are stored with the game client, and the server simply sends over _translation keys_ which are then turned into relevant readable text on the client-side. Here, however, we need to instead handle translations by changing the packets that get sent to players such that they are correctly translated _before_ the client even receives it. This is a lot of work! Luckily, this is handled by [Server Translations](https://github.com/NucleoidMC/Server-Translations), and we do not need to worry about it!
 
 All this actually means for you is that your language files need to go in the `data` folder instead of the `assets` folder (e.g. `data/<namespace>/lang/en_us.json`).
 
@@ -196,14 +199,25 @@ return context.openWithWorld(worldConfig, (activity, world) -> {
 
 This code will disable fall damage for all players, as well as registering an event listener that will be called whenever a player is added to this game.
 
-However! Before we give functionality to our brilliant example game, we need to respond to the *player offer event listener*. This is called *before* any player joins the game, and is able to accept or reject that join request. Most critically, the listener defines how and where the player should be spawned into our game world.
+However! Before we give functionality to our brilliant example game, we need to respond to the *player offer and accept event listeners*. These listeners are called *before* any player joins the game and are responsible for accepting or rejecting join requests as well as defining how and where the player should be spawned into our game world.
 
-An example offer listener may look like:
+Specifically, you can think of the process as the following:
+
+ - A player (or perhaps a group of players) tries to join a game
+ - The `GamePlayerEvents.OFFER` listener is called with a 'join offer', representing the players and their 'join intent' (particularly either participating or spectating)
+ - The offer is either accepted or rejected by the game through a `JoinOfferResult`
+ - The `GamePlayerEvents.ACCEPT` listener is called
+ - The acceptor teleports the relevant players into the game space world
+
+This model has one primary benefit: allowing offers to be handled separately from the teleport logic means that games can reject players even if they are not actually on the server. Note that both of these listeners must be handled, or else players will be unable to join the game!
+
+An example offer and accept listener may look like:
 ```java
-activity.listen(GamePlayerEvents.OFFER, offer -> {
-    ServerPlayerEntity player = offer.player();
-    return offer.accept(world, new Vec3d(0.0, 64.0, 0.0))
-            .and(() -> {
+activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
+
+activity.listen(GamePlayerEvents.ACCEPT, acceptor -> {
+    return acceptor.teleport(world, new Vec3d(0.5, 65.0, 0.5))
+            .thenRunForEach(player -> {
                 player.changeGameMode(GameMode.ADVENTURE);
             });
 });
@@ -211,20 +225,20 @@ activity.listen(GamePlayerEvents.OFFER, offer -> {
 
 That's a lot! Let's break it down:
 
- - We register a listener for `GamePlayerEvents.OFFER` which takes an `offer` parameter.
+ - We register a listener for `GamePlayerEvents.OFFER` with the `JoinOffer::accept` method reference. This indicates that join offers should always be accepted by the game.
 
- - We get the player instance who is trying to join from the offer.
+ - We register a listener for `GamePlayerEvents.ACCEPT` which takes an `acceptor` parameter.
 
- - We call `offer.accept(...)` to accept the player into the game.
-     - We pass the accept function a *world* and a *position* for the player to be teleported to. The world was passed to us above by Plasmid!
+ - We call `acceptor.teleport(...)` to teleport the joining player(s) into the game.
+     - We pass the teleport function a *world* and a *position* for the player to be teleported to. The world was passed to us above by Plasmid!
 
- - We then call `.and(...)` on the result of `.accept(...)` in order to attach some additional spawn logic to be run when the player joins. In this case, that is to set the player's game mode to adventure mode as they join.
+ - We then call `.thenRunForEach(...)` on the result of `.teleport(...)` in order to gain access to `ServerPlayerEntity` instances and attach some additional spawn logic to be run when the player(s) join. In this case, that is to set the player's game mode to adventure mode as they join.
 
 Now that we have that set up, we can return to our player add listener: as of right now, we're not doing anything when it is called. We want it to send a greeting to the player when they join. Let's implement that:
 ```java
 GameSpace gameSpace = activity.getGameSpace();
 activity.listen(GamePlayerEvents.ADD, player -> {
-    Text message = Text.literal(config.greeting);
+    Text message = Text.literal(config.greeting());
     gameSpace.getPlayers().sendMessage(message);
 });
 ```
@@ -268,21 +282,21 @@ public final class ExampleGame {
             ExampleGame game = new ExampleGame(config, activity.getGameSpace(), world);
 
             activity.deny(GameRuleType.FALL_DAMAGE);
-            activity.listen(GamePlayerEvents.OFFER, game::onPlayerOffer);
+            activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
+            activity.listen(GamePlayerEvents.ACCEPT, game::onAcceptPlayers);
             activity.listen(GamePlayerEvents.ADD, game::onPlayerAdd);
         });
     }
 
-    private PlayerOfferResult onPlayerOffer(PlayerOffer offer) {
-        ServerPlayerEntity player = offer.player();
-        return offer.accept(this.world, new Vec3d(0.0, 64.0, 0.0))
-                .and(() -> {
+    private JoinAcceptorResult onAcceptPlayers(JoinAcceptor acceptor) {
+        return acceptor.teleport(this.world, new Vec3d(0.5, 65.0, 0.5))
+                .thenRunForEach(player -> {
                     player.changeGameMode(GameMode.ADVENTURE);
                 });
     }
 
     private void onPlayerAdd(ServerPlayerEntity player) {
-        Text message = Text.literal(this.config.greeting);
+        Text message = Text.literal(this.config.greeting());
         this.gameSpace.getPlayers().sendMessage(message);
     }
 }
