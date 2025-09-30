@@ -4,7 +4,7 @@
 Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. The Plasmid version should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
 
 !!! info
-	This tutorial is currently updated for **Plasmid 0.6.x** and **Minecraft 1.21.4**.
+	This tutorial is currently updated for **Plasmid 0.6.x** and **Minecraft 1.21.8**.
 
 ```groovy
 repositories {
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
   // ...
-  modImplementation 'xyz.nucleoid:plasmid:0.6.2+1.21.4'
+  modImplementation 'xyz.nucleoid:plasmid:0.6.6+1.21.8'
 }
 ```
 
@@ -22,9 +22,9 @@ A "game type" (`GameType`) is the entry-point to creating a game with Plasmid: t
 
 Plasmid is designed to encourage data-driven games, and works with the concept of a "game config". A game config is essentially a specific variation of a game type! This may involve a different map to play on, or entirely different game mechanics. A game config is simply defined as a JSON file in a datapack that references your `GameType` and passes along any extra data that may be useful for configuring your game. While this may be a bit more work at first, it is very powerful in allowing games to be much easier to tweak or produce multiple variations of without duplicating code. More on configs later!
 
-To register a `GameType`, you will need to call `GameType.register()` in your `ModInitializer` class. A call to register a `GameType` may look something like:
+To register a `GameType`, you will need to call `GameTypes.register()` in your `ModInitializer` class. A call to register a `GameType` may look something like:
 ```java
-GameType.register(
+GameTypes.register(
         Identifier.of("plasmid_example", "example"),
         ExampleGameConfig.CODEC,
         ExampleGame::open
