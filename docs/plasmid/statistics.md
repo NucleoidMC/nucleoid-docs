@@ -1,14 +1,12 @@
 # Implementing statistics
 
-!!! warning
-    The final statistics API is only available on Plasmid 0.5 for 1.17 and higher, as some things have changed since the initial implementation in Plasmid 0.4
+!!! info
+    This tutorial is currently updated for **Plasmid 0.5.x** and **Minecraft 1.17.1**.
 
 Plasmid provides an API for allowing minigames to record statistics for their players, and can be implemented to allow leaderboards to be generated for games (soon&trade;).
 
 ## Before you begin
 This guide assumes that you have a minigame already implemented and want to add support for tracking statistics. If you simply would like to create a minigame, see the [Getting Started guide](getting-started.md).
-
-It also expects that you are on the latest version of Plasmid 0.5 with statistics support.
 
 ## Bundles of fun
 (Well it might not seem fun, but its the first step for implementing statistics into your game.)
