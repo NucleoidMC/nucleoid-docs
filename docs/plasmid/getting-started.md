@@ -8,7 +8,7 @@ Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/
 
 ```groovy
 repositories {
-  maven { url = 'https://maven.nucleoid.xyz/' }
+  maven { url = 'https://maven.nucleoid.xyz/releases/' }
 }
 
 dependencies {
