@@ -33,6 +33,7 @@ nav:
     - plasmid/getting-started.md
     - plasmid/maps.md
     - plasmid/statistics.md
+    - plasmid/taters.md
   - Backend:
     - backend/index.md
     - backend/http-api.md
