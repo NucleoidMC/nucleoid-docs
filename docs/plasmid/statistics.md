@@ -1,9 +1,9 @@
 # Implementing statistics
 
 !!! info
-    This tutorial is currently updated for **Plasmid 0.5.x** and **Minecraft 1.17.1**.
+    This tutorial is currently updated for **Plasmid 0.7.x** and **Minecraft 26.2**.
 
-Plasmid provides an API for allowing minigames to record statistics for their players, and can be implemented to allow leaderboards to be generated for games (soon&trade;).
+Plasmid provides an API for allowing minigames to record statistics for their players, and can be implemented to allow leaderboards to be generated for games.
 
 ## Before you begin
 This guide assumes that you have a minigame already implemented and want to add support for tracking statistics. If you simply would like to create a minigame, see the [Getting Started guide](getting-started.md).
@@ -11,24 +11,27 @@ This guide assumes that you have a minigame already implemented and want to add 
 ## Bundles of fun
 (Well it might not seem fun, but its the first step for implementing statistics into your game.)
 
-The first step for implementing statistics is getting your hands on a `GameStatisticBundle`, which is a class provided by plasmid that holds per-player and global statistics for your current game. You can do this quite easily within the constructor of your `GameActive` class like this:
+The first step for implementing statistics is getting your hands on a `GameStatisticBundle`, which is a class provided by plasmid that holds per-player and global statistics for your current game. You can do this quite easily within the constructor of your `ExampleGame` class like this:
 ```java
-public class MyGameActive {
+public class ExampleGame {
     /* other fields */
     public final GameStatisticBundle statistics;
 
-    private MyGameActive(GameSpace gameSpace, /* other parameters */) {
+    private ExampleGame(GameSpace gameSpace, /* other parameters */) {
         /* other initialization logic */
 
         // The value passed to getStatistics should usually be the ID of your minigame/mod
-        this.statistics = gameSpace.getStatistics().bundle(MyGame.ID);
+        this.statistics = gameSpace.getStatistics().bundle("examplegame");
     }
 
     /* other game logic */
 }
 ```
 
-You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.bundle.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics().bundle()`, so double check it matches.
+You also need to provide a translation for the name of your bundle, with the translation key in the form `statistic.bundle.<namespace>`. This `namespace` is whatever you passed into `gameSpace.getStatistics().bundle()`, so double check it matches. This might look like:
+```json
+"statistic.bundle.examplegame": "Example Game"
+```
 
 ## Getting some keys
 Time to get implementi- Oh, we still need to do something else first :/

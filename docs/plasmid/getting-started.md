@@ -4,7 +4,7 @@
 Assuming you [already have a Fabric workspace set up](https://fabricmc.net/wiki/tutorial:setup), the first step to setting up Plasmid will be adding it to your gradle buildscript. You will need to add the maven repository as well as the plasmid dependency. The Plasmid version should be replaced with the latest version from [our versions page](https://nucleoid.xyz/use).
 
 !!! info
-	This tutorial is currently updated for **Plasmid 0.6.x** and **Minecraft 1.21.8**.
+	This tutorial is currently updated for **Plasmid 0.7.x** and **Minecraft 26.2**.
 
 ```groovy
 repositories {
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
   // ...
-  modImplementation 'xyz.nucleoid:plasmid:0.6.6+1.21.8'
+  implementation 'xyz.nucleoid:plasmid:0.7.2+26.2'
 }
 ```
 
@@ -25,7 +25,7 @@ Plasmid is designed to encourage data-driven games, and works with the concept o
 To register a `GameType`, you will need to call `GameTypes.register()` in your `ModInitializer` class. A call to register a `GameType` may look something like:
 ```java
 GameTypes.register(
-        Identifier.of("plasmid_example", "example"),
+        Identifier.fromNamespaceAndPath("plasmid_example", "example"),
         ExampleGameConfig.CODEC,
         ExampleGame::open
 );
@@ -33,7 +33,7 @@ GameTypes.register(
 
 Let's break down what is going on here:
 
- - `Identifier.of("plasmid_example", "example")`
+ - `Identifier.fromNamespaceAndPath("plasmid_example", "example")`
      - declares the unique identifier for this _game type_ that will be referenced by game config JSONs
 
  - `ExampleGameConfig.CODEC`
@@ -83,7 +83,7 @@ Most things here you can ignore: you only really need to worry about what's in t
      - This adds a field with a given name and type that will be read from the JSON.
 
      - You will notice that `Codec.STRING` is itself a `Codec<String>`! Every field you declare will require a Codec to describe how that field should be handled. In this case, we're indicating that the greeting field should be loaded using `Codec.STRING`. In the same way, we could reference any other codec we create to add it as a field! This is very useful in allowing combinations of codecs to create complex structures!
-         - Codec tip: most serializable Minecraft types will hold a static `CODEC` field for use (e.g. `BlockPos.CODEC` or `Identifier.CODEC`). If not, we bundle a `MoreCodecs` type which provides some common ones that are not included in the vanilla codebase (e.g. `MoreCodecs.TEXT`).
+         - Codec tip: most serializable Minecraft types will hold a static `CODEC` field for use (e.g. `BlockPos.CODEC` or `Identifier.CODEC`). If not, we bundle a `MoreCodecs` type which provides some common ones that are not included in the vanilla codebase (e.g. `MoreCodecs.BOX`).
 
      - The parameter to `.fieldOf()` specifies the name of the field (in JSON) that this value will be read from.
  
@@ -159,17 +159,16 @@ public class ExampleGame {
 
         // create a very simple map with a stone block at (0; 64; 0)
         MapTemplate template = MapTemplate.createEmpty();
-        template.setBlockState(new BlockPos(0, 64, 0), Blocks.STONE.getDefaultState());
+        template.setBlockState(new BlockPos(0, 64, 0), Blocks.STONE.defaultBlockState());
 
         // create a chunk generator that will generate from this template that we just created
         TemplateChunkGenerator generator = new TemplateChunkGenerator(context.server(), template);
 
-        // set up how the world that this minigame will take place in should be constructed
-        RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
-                .setGenerator(generator)
-                .setTimeOfDay(6000);
-
-        return context.openWithWorld(worldConfig, (activity, world) -> {
+        // set up how the level that this minigame will take place in should be constructed
+        RuntimeLevelConfig levelConfig = new RuntimeLevelConfig()
+                .setGenerator(generator);
+        
+        return context.openWithLevel(levelConfig, (activity, level) -> {
             // to be implemented
         });
     }
@@ -178,9 +177,9 @@ public class ExampleGame {
 
 There is a lot to unpack here, but it's not too complex if we break it down. Our `open` will be called whenever a player starts this game. The function takes a `GameOpenContext`, which holds the data from our JSON config (`context.config()`), and must return a `GameOpenProcedure`, which instructs Plasmid how it should continue to set up the game. It is worth nothing that this function is run asynchronously on the thread pool, so it is safe to run whatever slow code here before the game starts.
 
-The `GameOpenProcedure` is created from the `GameOpenContext.openWithWorld` function, and takes in a `RuntimeWorldConfig` as well as a lambda that accepts a `GameActivity` and `ServerWorld`. A runtime world is a concept within Plasmid that represents the fully isolated and temporary world that the game takes place within. It is automatically deleted when the game finishes. When a player joins the game, their inventory will be cleared, and when they leave, it will be restored back to them. A game activity is a specific set of logic that is running within a game: this is what we will configure to change game behaviour. We can switch the activity within a game at any point.
+The `GameOpenProcedure` is created from the `GameOpenContext.openWithLevel` function, and takes in a `RuntimeLevelConfig` as well as a lambda that accepts a `GameActivity` and `ServerLevel`. A runtime level is a concept within Plasmid that represents the fully isolated and temporary level that the game takes place within. It is automatically deleted when the game finishes. When a player joins the game, their inventory will be cleared, and when they leave, it will be restored back to them. A game activity is a specific set of logic that is running within a game: this is what we will configure to change game behaviour. We can switch the activity within a game at any point.
 
-The `RuntimeWorldConfig` describes how this world should be created. The most important thing to be configured within here is the chunk generator: this tells the game how the world should generate. It would be possible to, for example, pass the overworld chunk generator here, but for our purpose, we're creating an empty world with a single stone block. This is handled through the convenience `TemplateChunkGenerator`: this takes a `MapTemplate`, which is just a very basic world that contains some blocks! The generator then loads from that into the world itself.
+The `RuntimeLevelConfig` describes how this level should be created. The most important thing to be configured within here is the chunk generator: this tells the game how the level should generate. It would be possible to, for example, pass the overworld chunk generator here, but for our purpose, we're creating an empty level with a single stone block. This is handled through the convenience `TemplateChunkGenerator`: this takes a `MapTemplate`, which is just a very basic level that contains some blocks! The generator then loads from that into the level itself.
 
 Finally, we need to address what to do in the lambda with the `GameActivity` parameter. The code inside this lambda will run on the *main server thread*, and is used to run the actual game setup code. This mainly involves registering event listeners, or setting global rules.
 
@@ -188,7 +187,7 @@ Event tip: we make use of [Stimuli](https://github.com/NucleoidMC/stimuli) for h
 
 For example:
 ```java
-return context.openWithWorld(worldConfig, (activity, world) -> {
+return context.openWithLevel(levelConfig, (activity, level) -> {
     activity.deny(GameRuleType.FALL_DAMAGE);
 
     activity.listen(GamePlayerEvents.ADD, player -> {
@@ -199,7 +198,7 @@ return context.openWithWorld(worldConfig, (activity, world) -> {
 
 This code will disable fall damage for all players, as well as registering an event listener that will be called whenever a player is added to this game.
 
-However! Before we give functionality to our brilliant example game, we need to respond to the *player offer and accept event listeners*. These listeners are called *before* any player joins the game and are responsible for accepting or rejecting join requests as well as defining how and where the player should be spawned into our game world.
+However! Before we give functionality to our brilliant example game, we need to respond to the *player offer and accept event listeners*. These listeners are called *before* any player joins the game and are responsible for accepting or rejecting join requests as well as defining how and where the player should be spawned into our game level.
 
 Specifically, you can think of the process as the following:
 
@@ -207,7 +206,7 @@ Specifically, you can think of the process as the following:
  - The `GamePlayerEvents.OFFER` listener is called with a 'join offer', representing the players and their 'join intent' (particularly either participating or spectating)
  - The offer is either accepted or rejected by the game through a `JoinOfferResult`
  - The `GamePlayerEvents.ACCEPT` listener is called
- - The acceptor teleports the relevant players into the game space world
+ - The acceptor teleports the relevant players into the game space level
 
 This model has one primary benefit: allowing offers to be handled separately from the teleport logic means that games can reject players even if they are not actually on the server. Note that both of these listeners must be handled, or else players will be unable to join the game!
 
@@ -216,9 +215,9 @@ An example offer and accept listener may look like:
 activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
 
 activity.listen(GamePlayerEvents.ACCEPT, acceptor -> {
-    return acceptor.teleport(world, new Vec3d(0.5, 65.0, 0.5))
+    return acceptor.teleport(level, new Vec3(0.5, 65.0, 0.5))
             .thenRunForEach(player -> {
-                player.changeGameMode(GameMode.ADVENTURE);
+                player.setGameMode(GameType.ADVENTURE);
             });
 });
 ```
@@ -230,20 +229,20 @@ That's a lot! Let's break it down:
  - We register a listener for `GamePlayerEvents.ACCEPT` which takes an `acceptor` parameter.
 
  - We call `acceptor.teleport(...)` to teleport the joining player(s) into the game.
-     - We pass the teleport function a *world* and a *position* for the player to be teleported to. The world was passed to us above by Plasmid!
+     - We pass the teleport function a *level* and a *position* for the player to be teleported to. The level was passed to us above by Plasmid!
 
- - We then call `.thenRunForEach(...)` on the result of `.teleport(...)` in order to gain access to `ServerPlayerEntity` instances and attach some additional spawn logic to be run when the player(s) join. In this case, that is to set the player's game mode to adventure mode as they join.
+ - We then call `.thenRunForEach(...)` on the result of `.teleport(...)` in order to gain access to `ServerPlayer` instances and attach some additional spawn logic to be run when the player(s) join. In this case, that is to set the player's game mode to adventure mode as they join.
 
 Now that we have that set up, we can return to our player add listener: as of right now, we're not doing anything when it is called. We want it to send a greeting to the player when they join. Let's implement that:
 ```java
 GameSpace gameSpace = activity.getGameSpace();
 activity.listen(GamePlayerEvents.ADD, player -> {
-    Text message = Text.literal(config.greeting());
+    Component message = Component.literal(config.greeting());
     gameSpace.getPlayers().sendMessage(message);
 });
 ```
 
-So we've added logic to send a message within the listener, but what is a `GameSpace`? A `GameSpace` is a concept introduced by Plasmid which, as the name implies, represents the _space_ within which a game is occurring. For all our purposes, that space is just this one dimension that the game is playing within. The `GameSpace` is useful for us in that it keeps track of all the players within it, as well as the `ServerWorld` that the game is taking place within. Here, we access the `GameSpace` through `GameActivity.getGameSpace()`.
+So we've added logic to send a message within the listener, but what is a `GameSpace`? A `GameSpace` is a concept introduced by Plasmid which, as the name implies, represents the _space_ within which a game is occurring. For all our purposes, that space is just this one dimension that the game is playing within. The `GameSpace` is useful for us in that it keeps track of all the players within it, as well as the `ServerLevel` that the game is taking place within. Here, we access the `GameSpace` through `GameActivity.getGameSpace()`.
 
 Working with players additionally goes through a different Plasmid API: a `PlayerSet`. A `PlayerSet` represents just a list of players, and it can be iterated over or queried, but additionally provides utilities for performing bulk operations over many players. For example, sending a message! Here, we use `PlayerSet.sendMessage()` to send our greeting to every player within the game.
 
@@ -251,54 +250,54 @@ Tada! 🎉 We have a working game! But before we test it, let's do some minor re
 
 Turns out, that works just fine, and we are left with our final `ExampleGame` setup:
 ```java
-public final class ExampleGame {
-    private final ExampleGameConfig config;
-    private final GameSpace gameSpace;
-    private final ServerWorld world;
+public class ExampleGame {
+   private final ExampleGameConfig config;
+   private final GameSpace gameSpace;
+   private final ServerLevel level;
 
-    public ExampleGame(ExampleGameConfig config, GameSpace gameSpace, ServerWorld world) {
-        this.config = config;
-        this.gameSpace = gameSpace;
-        this.world = world;
-    }
+   public ExampleGame(ExampleGameConfig config, GameSpace gameSpace, ServerLevel level) {
+      this.config = config;
+      this.gameSpace = gameSpace;
+      this.level = level;
+   }
 
-    public static GameOpenProcedure open(GameOpenContext<ExampleGameConfig> context) {
-        // get our config that got loaded by Plasmid
-        ExampleGameConfig config = context.config();
+   public static GameOpenProcedure open(GameOpenContext<ExampleGameConfig> context) {
+      // get our config that got loaded by Plasmid
+      ExampleGameConfig config = context.config();
 
-        // create a very simple map with a stone block at (0; 64; 0)
-        MapTemplate template = MapTemplate.createEmpty();
-        template.setBlockState(new BlockPos(0, 64, 0), Blocks.STONE.getDefaultState());
+      // create a very simple map with a stone block at (0; 64; 0)
+      MapTemplate template = MapTemplate.createEmpty();
+      template.setBlockState(new BlockPos(0, 64, 0), Blocks.STONE.defaultBlockState());
 
-        // create a chunk generator that will generate from this template that we just created
-        TemplateChunkGenerator generator = new TemplateChunkGenerator(context.server(), template);
+      // create a chunk generator that will generate from this template that we just created
+      TemplateChunkGenerator generator = new TemplateChunkGenerator(context.server(), template);
 
-        // set up how the world that this minigame will take place in should be constructed
-        RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
-                .setGenerator(generator)
-                .setTimeOfDay(6000);
+      // set up how the level that this minigame will take place in should be constructed
+      RuntimeLevelConfig levelConfig = new RuntimeLevelConfig()
+              .setGenerator(generator);
 
-        return context.openWithWorld(worldConfig, (activity, world) -> {
-            ExampleGame game = new ExampleGame(config, activity.getGameSpace(), world);
+      return context.openWithLevel(levelConfig, (activity, level) -> {
+         ExampleGame game = new ExampleGame(config, activity.getGameSpace(), level);
 
-            activity.deny(GameRuleType.FALL_DAMAGE);
-            activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
-            activity.listen(GamePlayerEvents.ACCEPT, game::onAcceptPlayers);
-            activity.listen(GamePlayerEvents.ADD, game::onPlayerAdd);
-        });
-    }
+         activity.deny(GameRuleType.FALL_DAMAGE);
+         activity.listen(GamePlayerEvents.ADD, game::onPlayerAdd);
+         activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
 
-    private JoinAcceptorResult onAcceptPlayers(JoinAcceptor acceptor) {
-        return acceptor.teleport(this.world, new Vec3d(0.5, 65.0, 0.5))
-                .thenRunForEach(player -> {
-                    player.changeGameMode(GameMode.ADVENTURE);
-                });
-    }
+         activity.listen(GamePlayerEvents.ACCEPT, game::onAcceptPlayers);
+      });
+   }
 
-    private void onPlayerAdd(ServerPlayerEntity player) {
-        Text message = Text.literal(this.config.greeting());
-        this.gameSpace.getPlayers().sendMessage(message);
-    }
+   private JoinAcceptorResult onAcceptPlayers(JoinAcceptor acceptor) {
+      return acceptor.teleport(this.level, new Vec3(0.5, 65.0, 0.5))
+              .thenRunForEach(player -> {
+                 player.setGameMode(GameType.ADVENTURE);
+              });
+   }
+
+   private void onPlayerAdd(ServerPlayer player) {
+      Component message = Component.literal(this.config.greeting());
+      this.gameSpace.getPlayers().sendMessage(message);
+   }
 }
 ```
 
