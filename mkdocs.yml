@@ -9,6 +9,9 @@ theme:
     - navigation.instant
     - navigation.tabs
     - navigation.sections
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
     - toc.integrate
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -29,30 +32,70 @@ theme:
 nav:
   - index.md
   - Plasmid:
-    - plasmid/index.md
-    - plasmid/getting-started.md
-    - plasmid/maps.md
-    - plasmid/statistics.md
+      - plasmid/index.md
+      - plasmid/getting-started.md
+      - plasmid/creating-maps.md
+      - plasmid/adding-map-support.md
+      - plasmid/statistics.md
+  - API:
+      - api/index.md
+      - Plasmid:
+          - Config:
+              - api/plasmid/config/game-config.md
+              - api/plasmid/config/player-limiter-config.md
+              - api/plasmid/config/waiting-lobby-config.md
+          - Data:
+              - api/plasmid/data/game-result.md
+              - api/plasmid/data/join-intent.md
+          - Util:
+              - api/plasmid/util/player-ops.md
+              - api/plasmid/util/player-ref.md
+              - api/plasmid/util/player-set.md
+          - Game Space:
+              - api/plasmid/game-space/game-space-manager.md
+              - api/plasmid/game-space/game-space.md
+              - api/plasmid/game-space/game-space-players.md
+              - api/plasmid/game-space/game-space-levels.md
+              - api/plasmid/game-space/game-space-metadata.md
+              - api/plasmid/game-space/game-space-state.md
+          - Game Widgets:
+              - api/plasmid/widgets/widgets.md
+              - api/plasmid/widgets/global-widgets.md
+              - api/plasmid/widgets/game-widget.md
+              - api/plasmid/widgets/bossbar-widget.md
+              - api/plasmid/widgets/sidebar-widget.md
+              - api/plasmid/widgets/scrollable-sidebar-widget.md
+          - Waiting Lobby:
+              - api/plasmid/waiting-lobby/waiting-lobby.md
+              - api/plasmid/config/waiting-lobby-config.md
+              - api/plasmid/config/player-limiter-config.md
+          - api/plasmid/game-activity.md
+          - api/plasmid/game-rule-type.md
+          - api/plasmid/game-type.md
+      - Stimuli:
+          - api/stimuli/index.md
+          - api/stimuli/stimulus-event.md
+          - api/stimuli/event-result.md
   - Backend:
-    - backend/index.md
-    - backend/http-api.md
+      - backend/index.md
+      - backend/http-api.md
   - Build Rush:
-    - build-rush/index.md
-    - build-rush/maps.md
-    - build-rush/builds.md
+      - build-rush/index.md
+      - build-rush/maps.md
+      - build-rush/builds.md
   - Administration:
-    - admin/index.md
-    - Guides:
-      - admin/guides/new-contributor.md
-      - admin/guides/reboot.md
-    - Infra:
-      - admin/infra/index.md
-      - Services:
-        - admin/infra/services/backend.md
-        - admin/infra/services/minecraft.md
-        - admin/infra/services/modmail.md
-        - admin/infra/services/website.md
-        - admin/infra/services/misc.md
+      - admin/index.md
+      - Guides:
+          - admin/guides/new-contributor.md
+          - admin/guides/reboot.md
+      - Infra:
+          - admin/infra/index.md
+          - Services:
+              - admin/infra/services/backend.md
+              - admin/infra/services/minecraft.md
+              - admin/infra/services/modmail.md
+              - admin/infra/services/website.md
+              - admin/infra/services/misc.md
 
 extra:
   social:
@@ -68,4 +111,7 @@ copyright: Content on this site is licensed CC-BY-SA; excluding code snippets, w
 markdown_extensions:
   - admonition
   - pymdownx.highlight
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.details
   - pymdownx.superfences

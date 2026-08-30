@@ -4,13 +4,17 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/NucleoidMC/plasmid?logo=github&style=for-the-badge)](https://github.com/NucleoidMC/plasmid)
 [![Latest maven version](https://img.shields.io/maven-metadata/v?label=Latest%20version&style=for-the-badge&metadataUrl=https%3A%2F%2Fmaven.nucleoid.xyz%2Fxyz%2Fnucleoid%2Fplasmid%2Fmaven-metadata.xml)](https://nucleoid.xyz/use/)
 
-Plasmid is a library and mod that forms the core of Nucleoid, providing a base to build minigames on top of.
+Plasmid is a library and mod that forms the core of Nucleoid, providing a base to build minigames on top of.  
+If you're looking to make your first game, check out the [getting started guide](getting-started.md).
 
+<!-- prettier-ignore -->
 !!! quote "From the plasmid README"
     Plasmid intends to do all the boring work relating to minigame implementation, to rather allow focus effort on just the game itself.
 
+<!-- prettier-ignore -->
 !!! warning
     The Plasmid tutorials and documentation may not represent the latest versions of Plasmid and Minecraft! Please check each page to know whether you are using the same versions.
 
+<!-- prettier-ignore -->
 !!! note
     The current documentation is imported from [the old GitHub wiki](https://github.com/NucleoidMC/plasmid/wiki), and was originally written by Gegy.

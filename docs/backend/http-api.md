@@ -20,7 +20,7 @@ There is currently also no rate-limiting on the API, however this may change in 
 
 ### Server status
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/status/play
 
     {
@@ -60,7 +60,7 @@ Currently the following servers are available to query:
 ### Get recent games
 
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/games/recent?limit=10
 
     [
@@ -91,7 +91,7 @@ Queries a list of recently played games on the server. The limit argument is req
 ### Get recent games (player)
 
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/games/recent?limit=10&player=f0087cb4-dee2-4b99-8158-d20cd72b343d
 
     [
@@ -115,7 +115,7 @@ The returned object is the same format as [Get recent games](#get-recent-games),
 
 ### Get all player stats
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/stats/player/07e92b46-8386-4067-8f72-8ab96e606fb7
 
     {
@@ -143,7 +143,7 @@ Allows for querying all the statistics of a player.
 
 ### Get player stats for a game
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/stats/player/07e92b46-8386-4067-8f72-8ab96e606fb7/bedwars
 
     {
@@ -162,7 +162,7 @@ It will return a response in the same format as [Get all player stats](#get-all-
 
 ### Get stats for game
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/stats/game/bda420f0-b480-4f8b-bcc5-7c6c63d51643
 
     {
@@ -198,7 +198,7 @@ Allows for querying the statistics after a particular game has been played.
 ### Get statistics stats
 
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/stats/stats
 
     {
@@ -224,7 +224,7 @@ Returns some information about the amount of statistics that have been recorded 
 ### Get leaderboard
 
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/leaderboard/nucleoid:games_played
 
     [
@@ -263,7 +263,7 @@ Returns the top 10 of the specified leaderboard.
 ### Get player rankings
 
 !!! example
-    ```
+    ```linenums="1"
     GET https://api.nucleoid.xyz/player/5ad3ab57b55646359ba99a9a0568965a/rankings
 
     {

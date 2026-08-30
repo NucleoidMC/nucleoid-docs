@@ -20,7 +20,7 @@ Grant them the contributor role, along with whichever specific roles fit (eg. co
 
 ### In game
 
-```mcfunction
+```mcfunction linenums="1"
 /role assign <username> contributor
 /role assign <username> dev # if they are a code contributor
 /role assign <username> builder # if they are a build contributor
@@ -30,7 +30,7 @@ Grant them the contributor role, along with whichever specific roles fit (eg. co
 
 1. Create a new file in the [`NucleoidMC/nucleoid-contributors`](https://github.com/NucleoidMC/nucleoid-contributors), under the folder `data/people/` named `theirusername.toml` (use all lower case, and no spaces or special characters).
 2. Fill out the file using the following template:
-```toml
+```toml linenums="1"
 name = "their preferred display name (if unsure, ask)"
 groups = [
     "code",
