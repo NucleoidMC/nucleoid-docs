@@ -1,6 +1,7 @@
 site_name: Nucleoid Docs
 repo_url: https://github.com/NucleoidMC/nucleoid-docs
 repo_name: NucleoidMC/nucleoid-docs
+edit_uri: edit/main/
 
 theme:
   name: material
